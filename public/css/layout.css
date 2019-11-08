@@ -135,6 +135,9 @@
             padding-right: 0px;
             padding-left: 10px;
         }
+        .btn-right-connexion {
+            display: none;
+        }
     }
     
     a.article,
@@ -180,5 +183,5 @@
         transition: margin 0.4s;
         padding-bottom: 65px;
         padding-right: 25px;
-        margin-left: 25px;
+        padding-left: 25px;
     }

@@ -1,7 +1,5 @@
 body {
-    font-family: 'Oswald', sans-serif;
     color: #3d3838;
-    font-size: 1.6vw;
 }
 
 #passwordMismatch {
@@ -24,8 +22,13 @@ body {
 label {
     margin-top: 3%;
     color: #3d3838;
+    font-size: 2.5vh;
 }
 
 .form {
     margin-top: 3%;
+}
+
+.card-title {
+    font-size: 4vh;
 }
