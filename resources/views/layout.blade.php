@@ -11,13 +11,12 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <title>BDE St-Nazaire</title>
-    @yield('Link')   
+    @yield('Link')
 </head>
 
 <body>
 
     <div class="wrapper">
-        <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>Barre de navigation</h3>
@@ -65,7 +64,6 @@
         </nav>
     </div>
 
-
     <div id="content">
         <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
@@ -76,8 +74,8 @@
     <div id="main">
         @yield('content')
     </div>
-    
-    <div class="footer-bottom fixed-bottom">
+
+    <footer class="footer-bottom fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
@@ -87,9 +85,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
 
-    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -104,5 +101,4 @@
     </script>
     <script src="{{ asset('js/navbar_script.js') }}"></script>
 </body>
-
 </html>
