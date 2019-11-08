@@ -1,0 +1,31 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    color: #3d3838;
+    font-size: 1.6vw;
+}
+
+#passwordMismatch {
+    color: red;
+    display: none;
+    text-align: center;
+}
+
+#passwordMatch {
+    color: green;
+    display: none;
+    text-align: center;
+}
+
+.card {
+    border: 5px solid #FFFFFF;
+    border-radius: 1%;
+}
+
+label {
+    margin-top: 3%;
+    color: #3d3838;
+}
+
+.form {
+    margin-top: 3%;
+}
