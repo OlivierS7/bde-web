@@ -36,7 +36,7 @@
                 <a href="#">Contact</a>
             </li>
             <li>
-                <a href="#">Mentions Légales</a>
+                <a href="mentions-legales">Mentions Légales</a>
             </li>
         </ul>
     </nav>
@@ -59,7 +59,7 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mentions Légales</a>
+                    <a class="nav-link" href="mentions-legales">Mentions Légales</a>
                 </li>
             </ul>
         </nav>
@@ -72,6 +72,14 @@
             <span>Barre de navigation</span>
         </button>
     </div>
+</div>
+
+<div class="sticky-top">
+<a href="connection"><button type="button" class="btn btn-info btn-right-connexion">
+        <i class="fas fa-align-right"></i>
+        <span>Connexion / Inscription</span>
+</button>
+</a>
 </div>
 
 <div id="main">
