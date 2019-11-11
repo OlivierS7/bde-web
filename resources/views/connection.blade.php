@@ -10,7 +10,7 @@
         <div class="card card-signin my-5">
             <div class="card-body">
                 <p class="card-title text-center">Se connecter</p>
-                <form class="form-signin" action="conenction" method="post">
+                <form class="form-signin" action="connect-user" method="post">
                     <div class="form-label-group">
                         <label for="inputEmail">Adresse E-Mail</label>
                         <input type="email" name="mail" class="form-control" placeholder="Adresse E-Mail" required

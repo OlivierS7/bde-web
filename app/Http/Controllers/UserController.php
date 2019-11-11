@@ -32,4 +32,25 @@ class UserController extends Controller
         ]);
         return redirect('/');
     }
+
+    public function connectUser(Request $request){
+        request()->validate([
+            'mail' => 'required|email|max:64',
+            'password' => 'required|min:8|max:32|regex:^(?=.*[A-Z])(?=.*\d).+$^',
+        ]);
+        $user_mail = request('mail');
+        $user_password = request('password');
+
+        $client = new \GuzzleHttp\Client();
+        $url = "http://localhost:8001/connect";
+        $response = $client->request('POST', $url, [
+            'form_params' => [
+                'mail' => $request->mail,
+                'password' => $request->password,
+            ]
+        ]);
+        if($response){
+            return redirect('/');
+        }
+    }
 }
