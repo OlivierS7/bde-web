@@ -6,8 +6,16 @@ function userController(){
 		});
 	};
 
+	this.connect = function(req, res){
+		this.connection.query('SELECT * FROM users WHERE `user_mail` = ? AND `user_password` = ?',
+		[req.body.mail, req.body.password], (err, result) => {
+			if (err) throw err;
+			res.json(result);
+		})
+	}
+
 	this.show = function(req, res){
-		this.connection.query('SELECT * FROM users WHERE `id` = ?', req.params.id, (err, result) => {
+		this.connection.query('SELECT * FROM users WHERE user_id = ?', req.params.id, (err, result) => {
 			if (err) throw err;
 			res.json(result);
 		});
@@ -23,7 +31,7 @@ function userController(){
 	};
 
 	this.destroy = function(req, res){
-		this.connection.query('DELETE FROM users WHERE id = ?', req.params.id, (err, result) => {
+		this.connection.query('DELETE FROM users WHERE user_id = ?', req.params.id, (err, result) => {
 			if (err) throw err;
 			res.end("User destroyed");
 		});
@@ -32,7 +40,7 @@ function userController(){
 	this.update = function(req, res){
 		var values = {user_firstname:req.body.firstname, user_lastname:req.body.lastname, user_mail:req.body.mail,
 		user_password:req.body.password, campus_id:req.body.campus};
-		this.connection.query('UPDATE users SET ? WHERE id = ?', [values, req.params.id], (err, result) => {
+		this.connection.query('UPDATE users SET ? WHERE user_id = ?', [values, req.params.id], (err, result) => {
 			if (err) throw err;
 			res.json(values);
 		});
