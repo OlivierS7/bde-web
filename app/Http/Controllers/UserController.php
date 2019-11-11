@@ -36,7 +36,6 @@ class UserController extends Controller
     public function connectUser(Request $request){
         request()->validate([
             'mail' => 'required|email|max:64',
-            'password' => 'required|min:8|max:32|regex:^(?=.*[A-Z])(?=.*\d).+$^',
         ]);
         $user_mail = request('mail');
         $user_password = request('password');
@@ -49,8 +48,7 @@ class UserController extends Controller
                 'password' => $request->password,
             ]
         ]);
-        if($response){
-            return redirect('/');
-        }
+        return redirect('/');
+        
     }
 }

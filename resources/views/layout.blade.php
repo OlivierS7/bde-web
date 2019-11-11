@@ -82,7 +82,6 @@
             <i class="fas fa-align-right"></i>
                 <span>Connexion / Inscription</span>
         </button>
-
     </div>
 
     <div id="main">

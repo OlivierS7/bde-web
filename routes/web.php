@@ -48,3 +48,5 @@ Route::get('/events', function(){
 });
 
 Route::post('/add-user', 'UserController@addUser');
+
+Route::post('/connect-user', 'UserController@connectUser');
