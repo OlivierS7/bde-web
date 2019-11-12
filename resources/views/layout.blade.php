@@ -79,16 +79,16 @@
 
     @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
     <div class="sticky-top">
-            <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = 'disconnect';">
-                <i class="fas fa-align-right"></i>
-                    <span>Se déconnecter</span>
-            </button>
-        </div>
+        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = 'disconnect';">
+            <i class="fas fa-align-right"></i>
+            <span>Se déconnecter</span>
+        </button>
+    </div>
     @else
     <div class="sticky-top">
         <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = 'connection';">
             <i class="fas fa-align-right"></i>
-                <span>Connexion / Inscription</span>
+            <span>Connexion / Inscription</span>
         </button>
     </div>
     @endif
@@ -97,17 +97,33 @@
         @yield('content')
     </div>
 
+
     <footer class="footer-bottom fixed-bottom">
+        @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
         <div class="container">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
                     <a href="contact">Contact</a>
                     <a href="mentions-legales">Mentions Légales</a>
                     <p>© 2019 | CESI BDE Saint-Nazaire</p>
+                    <a href="disconnect">Se déconnecter</a>
                 </div>
             </div>
         </div>
+        @else
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="contact">Contact</a>
+                    <a href="mentions-legales">Mentions Légales</a>
+                    <p>© 2019 | CESI BDE Saint-Nazaire</p>
+                    <a href="connection">Se connecter / S'inscrire</a>
+                </div>
+            </div>
+        </div>
+        @endif
     </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

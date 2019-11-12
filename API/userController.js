@@ -7,8 +7,7 @@ function userController() {
     };
 
     this.connect = function(req, res) {
-        this.connection.query('SELECT * FROM users WHERE user_mail = ?', req.body.mail, (err, result) => {
-            console.log(req.body);
+        this.connection.query('SELECT user_id, user_firstname, user_lastname, user_mail, user_password, status_name, campus_name FROM users INNER JOIN status ON users.status_id = status.status_id INNER JOIN campus ON users.campus_id = campus.campus_id WHERE user_mail = ?', req.body.mail, (err, result) => {
             if (err) throw err;
             res.json(result);
         });

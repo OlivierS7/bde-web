@@ -60,6 +60,8 @@ class UserController extends Controller
             session()->put('id', $result[0]->user_id);
             session()->put('firstname', $result[0]->user_firstname);
             session()->put('lastname', $result[0]->user_lastname);
+            session()->put('status', $result[0]->status_name);
+            session()->put('campus', $result[0]->campus_name);
             return redirect('/home');
         } else {
             return back()->with('error','Mail et / ou mot de passe incorrect(s).');
