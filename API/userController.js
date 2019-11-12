@@ -1,3 +1,6 @@
+let jwt = require('jsonwebtoken');
+let config = require('./config');
+
 function userController(){
 	this.index = function(req, res){
 		this.connection.query('SELECT * FROM users', (err, result) => {
@@ -10,14 +13,14 @@ function userController(){
         let username = req.body.username;
         let password = req.body.password;
 
-        let mockedUsername = 'admin';
-        let mockedPassword = 'password';
+        let mockedUsername = 'eZa25Ft$';
+        let mockedPassword = 'pdjG4q$*dqzGI8';
 
         if (username && password) {
             if (username == mockedUsername && password == mockedPassword) {
                 let token = jwt.sign({username: username},
                     config.secret,
-                    { expiresIn: '24h' // expires in 24 hours
+                    { expiresIn: '14d' // expires in 24 hours
                     }
                 );
                 // return the JWT token for the future API calls
