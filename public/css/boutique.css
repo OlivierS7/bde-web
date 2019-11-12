@@ -1,0 +1,30 @@
+.alone_border{
+
+    border: .15em solid goldenrod;
+    padding: .5em;
+    text-align: center;
+    background-color: #232323;
+}
+.top_articles{
+    border: .15em solid goldenrod;
+    background-color: rgb(255,165,0);
+    text-align: center;
+    margin-top: 1em;
+
+}
+.search-art1{
+margin-top: 3em;
+}
+#articles1{
+
+}
+
+@media (max-width: 768px){
+.search-art1{
+    margin-top: 1em;
+}
+.
+}
+
+
+
