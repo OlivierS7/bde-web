@@ -1,4 +1,7 @@
 var express = require('express');
+let jwt = require('jsonwebtoken');
+let config = require('./config');
+var middleware = require('./middleware');
 
 var hostname = 'localhost';
 const PORT = 8001;
@@ -8,7 +11,8 @@ const PASSWORD = "";
 const DATABASE = "projet_web";
 
 
-var userController = require('./userController.js');
+var controller = require('./userController.js');
+var userController = controller.userController;
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
 
@@ -17,22 +21,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var con = mysql.createConnection({
-    host: HOST,
-    user: USERNAME,
-    password: PASSWORD,
-    database: DATABASE
+  host: HOST,
+  user: USERNAME,
+  password: PASSWORD,
+  database: DATABASE
 });
 
 userController.connection = con;
 
-app.get('/users', (req, res) => userController.index(req, res));
-app.get('/users/:id', (req, res) => userController.show(req, res));
-app.post('/users', (req, res) => userController.store(req, res));
-app.get('/connect', (req, res) => userController.connect(req, res));
-app.put('/users/:id', (req, res) => userController.update(req, res));
-app.patch('/users/:id', (req, res) => userController.update(req, res));
-app.delete('/users/:id', (req, res) => userController.destroy(req, res));
+app.post('/token', (req, res)=>userController.login(req, res));
 
-app.listen(PORT, hostname, function() {
-    console.log("Server on port://" + hostname + ":" + PORT);
+app.get('/users', middleware.checkToken, (req, res)=>userController.index(req, res));
+app.get('/users/:id', middleware.checkToken, (req, res)=>userController.show(req, res));
+app.get('/connect', middleware.checkToken, (req, res)=>userController.connect(req, res));
+app.post('/users', middleware.checkToken, (req, res)=>userController.store(req, res));
+app.put('/users/:id', middleware.checkToken, (req, res)=>userController.update(req, res));
+app.patch('/users/:id', middleware.checkToken, (req, res)=>userController.update(req, res));
+app.delete('/users/:id', middleware.checkToken, (req, res)=>userController.destroy(req, res));
+
+app.listen(PORT, hostname, function(){
+	console.log("Server on port://"+ hostname +":"+PORT);
 });
