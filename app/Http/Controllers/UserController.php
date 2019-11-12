@@ -11,6 +11,23 @@ use Session;
 
 class UserController extends Controller
 {
+    private $token;
+
+    public function __construct(){
+        $client = new \GuzzleHttp\Client();
+        $url = "http://localhost:8001/token";
+        $username = "eZa25Ft$";
+        $password = "pdjG4q$*dqzGI8";
+        $response = $client->request('GET', $url, ['form_params' => [
+            'username' => $username,
+            'password' => $password,
+        ]
+    ]);
+    $result = (json_decode($response->getBody()->getContents()));
+    $this->token = $result->token;
+    
+    }
+
     public function addUser(Request $request)
     {
         request()->validate([
@@ -31,7 +48,30 @@ class UserController extends Controller
                 'campus' => $request->campus,
                 'password' => \Hash::make($request->password),
             ]
+            ,'headers' => [
+                'Authorization' => 'Bearer ' . $this->token,
+            ],
         ]);
+
+        $url = "http://localhost:8001/connect";
+        $response = $client->request('GET', $url, [
+            'form_params' => [
+                'mail' => $request->mail,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->token
+            ]
+        ]);
+        $result = json_decode($response->getBody()->getContents());
+        if(\Hash::check($request->password, $result[0]->user_password)){
+            session()->put('mail', $result[0]->user_mail);
+            session()->put('id', $result[0]->user_id);
+            session()->put('firstname', $result[0]->user_firstname);
+            session()->put('lastname', $result[0]->user_lastname);
+            session()->put('status', $result[0]->status_name);
+            session()->put('campus', $result[0]->campus_name);
+            return redirect('/home');
+        }
         return redirect('/');
     }
 
@@ -43,18 +83,17 @@ class UserController extends Controller
         $user_mail = request('mail');
         $user_password = request('password');
 
-        $formParams = [
-            'mail' => $request->mail,
-            ];
-
         $client = new \GuzzleHttp\Client();
         $url = "http://localhost:8001/connect";
-        $response = $client->request('GET', $url, [
+        $response = ($client->request('GET', $url,  [
             'form_params' => [
-                'mail' => $request->mail,
+                'mail' => "hadrien.gosselin@viacesi.fr",
+            ], 
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->token
             ]
-        ]);
-        $result = json_decode($response->getBody()->getContents());
+        ]));
+        $result = (json_decode($response->getBody()->getContents()));
         if(\Hash::check($request->password, $result[0]->user_password)){
             session()->put('mail', $result[0]->user_mail);
             session()->put('id', $result[0]->user_id);
@@ -71,5 +110,37 @@ class UserController extends Controller
     public function disconnectUser(){
         Session::flush();
         return redirect('/')->with('success','Déconnection effectuée');
+    }
+
+    public function updatePasswordUser(Request $request){
+        request()->validate([
+            'password' => 'required',
+            'newPassword' =>'required|min:8|max:32|regex:^(?=.*[A-Z])(?=.*\d).+$^',
+        ]);
+        $user_mail = request('mail');
+        $user_password = request('password');
+
+        $client = new \GuzzleHttp\Client();
+        $url = "http://localhost:8001/connect";
+        $response = $client->request('GET', $url, [
+            'form_params' => [
+                'mail' => $request->mail,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->token,
+            ],
+        ]);
+        $result = json_decode($response->getBody()->getContents());
+        if(\Hash::check($request->password, $result[0]->user_password)){
+            session()->put('mail', $result[0]->user_mail);
+            session()->put('id', $result[0]->user_id);
+            session()->put('firstname', $result[0]->user_firstname);
+            session()->put('lastname', $result[0]->user_lastname);
+            session()->put('status', $result[0]->status_name);
+            session()->put('campus', $result[0]->campus_name);
+            return redirect('/home');
+        } else {
+            return back()->with('error','Mot de passe incorrect(s).');
+        }
     }
 }

@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
@@ -32,9 +31,11 @@
                 <li>
                     <a href="events">Activités / Évènements</a>
                 </li>
+                @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
                 <li>
                     <a href="espace-membre">Espace Membre</a>
                 </li>
+                @endif
                 <li>
                     <a href="contact">Contact</a>
                 </li>

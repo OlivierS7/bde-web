@@ -51,4 +51,6 @@ Route::post('/add-user', 'UserController@addUser');
 
 Route::post('/connect-user', 'UserController@connectUser');
 
+Route::post('/user-update-password', 'UserController@updatePasswordUser');
+
 Route::get('/disconnect', 'UserController@disconnectUser');
