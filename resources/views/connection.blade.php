@@ -22,7 +22,8 @@
                         <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit">Se connecter</button>
-                    <div class="form-label-group">
+                    <div class="form-label-group">                        
+                        @include('flash-message')
                         <p class="d-flex justify-content-center"><br/>Étudiant et toujours pas de compte ?</p>
                         <p class="d-flex justify-content-center">Inscrivez vous !</p>
                         <a class="link" href="register"><p id="inscription">S'inscrire</p></a>

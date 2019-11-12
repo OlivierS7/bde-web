@@ -1,7 +1,5 @@
 @extends('layout')
 
-
-
 @section('content')
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae rerum soluta maiores impedit facilis vitae ad,
     quis, dolores incidunt nulla assumenda dicta iusto! Earum ut consequuntur eum molestias impedit velit. Molestias
