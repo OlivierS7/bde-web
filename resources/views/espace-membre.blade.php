@@ -5,13 +5,12 @@
 
 @section('content')
 
-@if(!empty(Session::all()))
-@if(Session::get('status') == "Etudiant")
+@if(Session::get('status') != null)
 <div class="container">
     <div class="row">
         <div class="col-md-3 ">
             <div class="list-group ">
-                <a href="#" class="list-group-item list-group-item-action active">Profil</a>
+                <a href="#" class="list-group-item list-group-item-action active" style="background: #17a2b8">Profil</a>
             </div>
         </div>
         <div class="col-md-9">
@@ -79,8 +78,17 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-4 col-8">
-                                        <button name="submit" type="submit" class="btn btn-primary">Mettre à jour mon
+                                        <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Mettre à jour mon
                                             mot de passe</button>
+                                    </div>
+                                </div>
+                            </form>
+                            @if(Session::get('status') == ("Personnel CESI") || ("Admin"))
+                            <form action="download-images" method="get">
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                        <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Télécharger les
+                                            photos postées sur le site du BDE</button>
                                     </div>
                                 </div>
                             </form>
@@ -92,22 +100,20 @@
         </div>
     </div>
 </div>
-@elseif(Session::get('status') == "Membre BDE")
-{{ "
-    
-    Membre BDE azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" }}
 
-@elseif(Session::get('status') == "Personnel CESI")
-{{ "
-    
-    Personnel CESI" }}
+
 
 @elseif(Session::get('status') == "Admin")
-{{ "
-    
-    Admin" }}
 
 @endif
+
+@else
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 d-flex justify-content-center">Vous n'avez pas accès à ce contenu, veuillez vous inscrire.
+        </div>
+    </div>
+</div>
 @endif
 
 @endsection

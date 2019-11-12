@@ -54,3 +54,5 @@ Route::post('/connect-user', 'UserController@connectUser');
 Route::post('/user-update-password', 'UserController@updatePasswordUser');
 
 Route::get('/disconnect', 'UserController@disconnectUser');
+
+Route::post('/contact-mail', 'ContactController@mailTo');
