@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-3 ">
             <div class="list-group ">
-                <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action active">Profil</a>
             </div>
         </div>
         <div class="col-md-9">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Email*</label>
+                                <label for="email" class="col-4 col-form-label">Email</label>
                                 <div class="col-8">
                                     <input id="email" name="email" placeholder={{ Session::get('mail')}}
                                         class="form-control here" required="required" type="text" readonly="readonly">
@@ -60,26 +60,27 @@
                                         class="form-control here" required="required" type="text" readonly="readonly">
                                 </div>
                             </div>
-                            <form action="user-update-password" method="POST">
+                            <form action="user-update-password" method="post">
+                                @csrf
                                 <div class="form-group row">
                                     <label for="newpass" class="col-4 col-form-label">Ancien mot de passe</label>
                                     <div class="col-8">
-                                        <input id="newpass" name="newpass" placeholder="Ancien mot de passe"
-                                            class="form-control here" type="text">
+                                        <input id="newpass" name="password" placeholder="Ancien mot de passe"
+                                            class="form-control here" type="password">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="newpass" class="col-4 col-form-label">Nouveau mot de passe</label>
                                     <div class="col-8">
-                                        <input id="newpass" name="newpass" placeholder="Nouveau mot de passe"
+                                        <input id="newpass" name="newPassword" placeholder="Nouveau mot de passe"
                                             class="form-control here" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-4 col-8">
-                                        <button name="submit" type="submit" class="btn btn-primary">Update My
-                                            Profile</button>
+                                        <button name="submit" type="submit" class="btn btn-primary">Mettre à jour mon
+                                            mot de passe</button>
                                     </div>
                                 </div>
                             </form>
