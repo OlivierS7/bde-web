@@ -37,7 +37,7 @@ Route::get('/contact', function(){
 
 Route::get('/boutique', 'ShopController@mainPage')->name('boutique');
 
-Route::post('/produit/{id}', 'ShopController@getOneProduct');
+Route::post('/produit/{id}', 'ShopController@getOneProduct')->name('produit');
 
 Route::get('/espace-membre', function(){
     return view('espace-membre');
@@ -60,3 +60,7 @@ Route::post('/contact-mail', 'ContactController@mailTo');
 Route::get('/insertProduct', 'ShopController@getInfoOnCategory');
 
 Route::post('/insertDatabaseProduct', 'ShopController@insertProduct');
+
+Route::get('/panier', 'CartController@index');
+
+Route::post('/ajouter/{id}', 'CartController@addProductToCart')->name('ajouter');

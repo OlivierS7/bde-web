@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
@@ -10,10 +11,13 @@ class ShopController extends Controller
 {
     public function mainPage()
     {
-        $products = DB::table('products')
-            ->join('images', 'products.image_id', '=', 'images.image_id')
-            ->get();
+        $products = Product::all();
         return view('boutique', ['products' => $products]);
+    }
+
+    public function getOneProduct($id){
+        $product = Product::find($id);
+        return view('produit', ['product' => $product]);
     }
 
     public function getInfoOnCategory()
@@ -42,12 +46,5 @@ class ShopController extends Controller
         return request()->validate([
             'product_image' => 'required|image|file|max:10000'
         ]);
-    }
-
-    public function getOneProduct($id){
-        $product = DB::table('products')
-            ->join('images', 'products.image_id', '=', 'images.image_id')
-            ->where('product_id', '=', $id)->get();
-        return view('produit', ['product' => $product]);
     }
 }
