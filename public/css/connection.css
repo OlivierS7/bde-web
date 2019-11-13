@@ -34,3 +34,7 @@ label {
     margin: auto !important;
     margin-top: 20% !important;
 }
+
+.btn-block {
+    background: #17a2b8;
+}
