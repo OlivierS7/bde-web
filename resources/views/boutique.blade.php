@@ -23,6 +23,10 @@
             <p>Produit: {{ $product->product_name }}</p>
             <p>Description: {{ $product->product_description }}</p>
             <p><img src="{{ $product->image_url }}"/></p>
+            <form action="/produit/{{ $product->product_id }}" method="POST">
+            @csrf
+                <input type="submit" value="Plus sur ce produit" name="product_id" id="product_button" />
+            </form>
         @endforeach
         <div class="row justify-content-between">
 

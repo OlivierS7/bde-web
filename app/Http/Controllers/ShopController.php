@@ -30,7 +30,7 @@ class ShopController extends Controller
         $description = request('product_description');
         $price = request('product_price');
         $image = request('product_image');
-        
+
         $imageName = $request->file('product_image');
         dd($request);
         $imageId = Image::storeImage($image);
@@ -44,5 +44,10 @@ class ShopController extends Controller
         ]);
     }
 
-   
+    public function getOneProduct($id){
+        $product = DB::table('products')
+            ->join('images', 'products.image_id', '=', 'images.image_id')
+            ->where('product_id', '=', $id)->get();
+        return view('produit', ['product' => $product]);
+    }
 }
