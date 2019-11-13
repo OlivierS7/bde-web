@@ -10,7 +10,11 @@
                 <p style="color: orange">Un article en particulier ?</p>
         </div>
     </div>
-
+        @foreach($products as $product)
+            <p>Produit: {{ $product->product_name }}</p>
+            <p>Description: {{ $product->product_description }}</p>
+            <p><img src="{{ $product->image_url }}"/></p>
+        @endforeach
         <div class="row justify-content-between">
 
             <div class="top_articles col-3 " id="articles2">

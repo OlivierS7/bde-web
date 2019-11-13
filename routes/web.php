@@ -35,9 +35,7 @@ Route::get('/contact', function(){
     return view('contact');
 });
 
-Route::get('/boutique', function(){
-    return view('boutique');
-});
+Route::get('/boutique', 'ShopController@mainPage');
 
 Route::get('/espace-membre', function(){
     return view('espace-membre');
