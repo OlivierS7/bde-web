@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
+use App\Product;
 
 class ShopController extends Controller
 {
@@ -15,7 +15,8 @@ class ShopController extends Controller
         return view('boutique', ['products' => $products]);
     }
 
-    public function getOneProduct($id){
+    public function getOneProduct($id)
+    {
         $product = Product::find($id);
         return view('produit', ['product' => $product]);
     }
@@ -34,17 +35,24 @@ class ShopController extends Controller
         $description = request('product_description');
         $price = request('product_price');
         $image = request('product_image');
-
-        $imageName = $request->file('product_image');
-        dd($request);
-        $imageId = Image::storeImage($image);
-        $product = DB::table('products')::create($this->validateRequest());
+        if ($this->validateRequest()) {
+            $imageName = $request->file('product_image')->store('product_image');
+            $imageId = Image::storeImage($image);
+            $product = DB::table('products')->insert($request->only(['product_category', 'product_name', 'product_description', 'product_price']) + ['image_id' => $imageId]);
+            return redirect('/boutique');
+        } else {
+            return back()->with('warning', 'Champ');
+        }
     }
 
     private function validateRequest()
     {
         return request()->validate([
-            'product_image' => 'required|image|file|max:10000'
+            'product_category' => 'required|integer',
+            'product_name' => 'required|min:1',
+            'product_description' => 'required|min:20',
+            'product_price' => 'required|integer',
+            'product_image' => 'required|image|file|max:10000',
         ]);
     }
 }

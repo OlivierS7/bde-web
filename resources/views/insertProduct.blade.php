@@ -11,7 +11,7 @@
         <div class="card card-signin my-5">
             <div class="card-body">
                 <p class="card-title text-center">Insérer un nouveau produit</p>
-                <form class="form-signin" action="insertDatabaseProduct" method="post">
+                <form class="form-signin" action="insertDatabaseProduct" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-label-group">
                         <label for="inputCampus">Catégorie</label>
@@ -27,7 +27,7 @@
                             required>
                     </div>
                     <div class="form-label-group">
-                        <label>Description du produit</label>
+                        <label>Description du produit (20 caractères minimum)</label>
                         <textarea type="text" name="product_description" class="form-control"
                             placeholder="Description du produit" required></textarea>
                     </div>
@@ -38,12 +38,11 @@
                     </div>
                     <div class="form-label-group d-flex flex-column">
                         <label>Image du produit</label>
-                        <input type="file" name="product_image" class="custom-file-input">
+                        <input type="file" name="product_image">
                     </div>
 
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit">Se
-                        connecter</button>
-
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit">Poster l'article</button>
+                    @include('flash-message')
                 </form>
             </div>
         </div>
