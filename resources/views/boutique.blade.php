@@ -10,6 +10,15 @@
                 <p style="color: orange">Un article en particulier ?</p>
         </div>
     </div>
+        @if(Session::get('status') == "Membre BDE")
+        <form action="insertProduct" method="get">
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Créer un nouveau produit</button>
+                </div>
+            </div>
+        </form>
+        @endif
         @foreach($products as $product)
             <p>Produit: {{ $product->product_name }}</p>
             <p>Description: {{ $product->product_description }}</p>
