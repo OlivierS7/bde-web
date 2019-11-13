@@ -23,24 +23,24 @@
             <h4>Site du BDE de Saint-Nazaire</h4>
             <ul class="list-unstyled components">
                 <li>
-                    <a href="home">Page d'accueil</a>
+                    <a href="{{ route('home') }}">Page d'accueil</a>
                 </li>
                 <li>
-                    <a href="boutique">Boutique</a>
+                    <a href="{{ route('boutique') }}">Boutique</a>
                 </li>
                 <li>
-                    <a href="events">Activités / Évènements</a>
+                    <a href="{{ route('events') }}">Activités / Évènements</a>
                 </li>
                 @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
                 <li>
-                    <a href="espace-membre">Espace Membre</a>
+                    <a href="{{ route('espace-membre') }}">Espace Membre</a>
                 </li>
                 @endif
                 <li>
-                    <a href="contact">Contact</a>
+                    <a href="{{ route('contact') }}">Contact</a>
                 </li>
                 <li>
-                    <a href="mentions-legales">Mentions Légales</a>
+                    <a href="{{ route('mentions-legales') }}">Mentions Légales</a>
                 </li>
             </ul>
         </nav>
@@ -51,19 +51,23 @@
             <nav id="top-navbar">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="boutique">Boutique</a>
+                        <a class="nav-link" href="{{ route('boutique') }}">Boutique</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="events">Activités / Évènements</a>
+                        <a class="nav-link" href="{{ route('events') }}">Activités / Évènements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="espace-membre">Espace Membre</a>
+                    @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
+                        <li>
+                            <a class="nav-link" href="{{ route('espace-membre') }}">Espace Membre</a>
+                        </li>
+                    @endif
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact">Contact</a>
+                        <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="mentions-legales">Mentions Légales</a>
+                        <a class="nav-link" href="{{ route('mentions-legales') }}">Mentions Légales</a>
                     </li>
                 </ul>
             </nav>
@@ -104,10 +108,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <a href="contact">Contact</a>
-                    <a href="mentions-legales">Mentions Légales</a>
+                    <a href="{{route('contact')}}">Contact</a>
+                    <a href="{{route('mentions-legales')}}">Mentions Légales</a>
                     <p>© 2019 | CESI BDE Saint-Nazaire</p>
-                    <a href="disconnect">Se déconnecter</a>
+                    <a href="{{route('disconnect')}}">Se déconnecter</a>
                 </div>
             </div>
         </div>
@@ -115,10 +119,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <a href="contact">Contact</a>
-                    <a href="mentions-legales">Mentions Légales</a>
+                    <a href="{{route('contact')}}">Contact</a>
+                    <a href="{{route('mentions-legales')}}">Mentions Légales</a>
                     <p>© 2019 | CESI BDE Saint-Nazaire</p>
-                    <a href="connection">Se connecter / S'inscrire</a>
+                    <a href="{{route('connection')}}">Se connecter / S'inscrire</a>
                 </div>
             </div>
         </div>

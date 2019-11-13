@@ -17,15 +17,15 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/connection', function(){
     return view('connection');
-});
+})->name('connection');
 
 Route::get('/mentions-legales', function(){
     return view('mentions-legales');
-});
+})->name('mentions-legales');
 
 Route::get('/register', function(){
     return view('register');
@@ -33,19 +33,19 @@ Route::get('/register', function(){
 
 Route::get('/contact', function(){
     return view('contact');
-});
+})->name('contact');
 
-Route::get('/boutique', function(){
-    return view('boutique');
-});
+Route::get('/boutique', 'ShopController@mainPage')->name('boutique');
+
+Route::post('/produit/{id}', 'ShopController@getOneProduct');
 
 Route::get('/espace-membre', function(){
     return view('espace-membre');
-});
+})->name('espace-membre');
 
 Route::get('/events', function(){
     return view('events');
-});
+})->name('events');
 
 Route::post('/add-user', 'UserController@addUser');
 
@@ -53,6 +53,10 @@ Route::post('/connect-user', 'UserController@connectUser');
 
 Route::post('/user-update-password', 'UserController@updatePasswordUser');
 
-Route::get('/disconnect', 'UserController@disconnectUser');
+Route::get('/disconnect', 'UserController@disconnectUser')->name('disconnect');
 
 Route::post('/contact-mail', 'ContactController@mailTo');
+
+Route::get('/insertProduct', 'ShopController@getInfoOnCategory');
+
+Route::post('/insertDatabaseProduct', 'ShopController@insertProduct');
