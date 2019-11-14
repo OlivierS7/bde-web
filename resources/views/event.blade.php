@@ -22,4 +22,15 @@
         </div>
     </form>
     @endif
+        @if($inscription)
+        <form action="{{ route('inscription', $event->event_id) }}" method="POST">
+            @csrf
+            <input type="submit" value="S'inscrire" name="inscription" id="inscription_button" />
+        </form>
+    @else
+            <form action="{{ route('deinscription', $event->event_id) }}" method="POST">
+                @csrf
+                <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
+            </form>
+    @endif
 @endsection
