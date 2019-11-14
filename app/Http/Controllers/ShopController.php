@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
 use App\Product;
+use stdClass;
 
 class ShopController extends Controller
 {
@@ -62,5 +63,17 @@ class ShopController extends Controller
         $product = Product::where('product_id', '=', $idProduct)->delete();
         $image = Image::where('image_id', '=', $idImage)->delete();
         return redirect('/boutique');
+    }
+
+    public function listProduct(){
+        $products = Product::all();
+        $tableau = array();
+        foreach($products as $product){
+            $tab = new stdClass;
+            $tab->name = $product->product_name;
+            $tab->url = route('boutique-produit', $product->product_id);
+            $tableau[] = $tab;
+        }
+        return $tableau;
     }
 }

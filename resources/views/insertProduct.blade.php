@@ -52,9 +52,3 @@
 @endif
 
 @endsection
-
-@extends('layout')
-
-@section('link')
-<link rel="stylesheet" href="{{ asset('css/insertProduct.css') }}">
-@endsection
