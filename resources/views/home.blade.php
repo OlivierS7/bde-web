@@ -8,7 +8,6 @@
     accusantium quis saepe magnam fugiat amet deserunt aliquam aperiam ipsam? Quas dolores libero, alias amet beatae
     doloribus in? Quas corrupti consequatur ad iure iste molestiae blanditiis commodi fugiat aperiam quaerat velit, eius
     ipsum eum totam maxime. Quam sed enim aliquid repudiandae, molestias fuga quae cumque culpa amet impedit! Neque
-    fugit consequuntur, enim nobis alias nam nesciunt eligendi, tenetur mollitia consequatur laborum. Ipsa animi cumque
     dicta similique quod eveniet minus, placeat natus repudiandae rerum atque asperiores voluptatibus laudantium ab
     voluptate velit praesentium quis dolore quam iusto voluptates quia earum! Dolorum nulla, magni eaque, qui fugit
     animi fugiat hic aut rem necessitatibus, incidunt expedita nisi totam facere! Cupiditate, qui! Maxime laudantium

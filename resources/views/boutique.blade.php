@@ -5,51 +5,47 @@
 
 @section('content')
 
+
     <div class="container-fluid search-art1">
-        <div class="col-md-4 alone_border" id="articles1">
+        <div class="container-fluid search-art1">
+            <div class="col-4 alone_border" id="Alone">
                 <p style="color: orange">Un article en particulier ?</p>
+                <form>
+                    <input type="text" class="form-control" id="recherche">
+                    <button type="submit" class="btn btn-primary mt-2" style="background: #17a2b8" >Rechercher</button>
+                </form>
+                @if(Session::get('status') == "Membre BDE")
+                    <form action="insertProduct" method="get">
+                            <div>
+                                <button name="submit" type="submit" class="btn btn-secondary mt-2" id="add_article">Créer un nouveau produit</button>
+                            </div>
+                    </form>
+                @endif
+            </div>
         </div>
     </div>
-        @if(Session::get('status') == "Membre BDE")
-        <form action="insertProduct" method="get">
-            <div class="form-group row">
-                <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Créer un nouveau produit</button>
-                </div>
-            </div>
-        </form>
-        @endif
-        @foreach($products as $product)
-            <p>Produit: {{ $product->product_name }}</p>
-            <p>Description: {{ $product->product_description }}</p>
-            <p>Catégorie: {{ $product->category->category_name }}</p>
-            <p><img src="/storage/image/{{ $product->image->image_url }}"/></p>
-            <form action="/produit/{{ $product->product_id }}" method="POST">
-            @csrf
-                <input type="submit" value="Plus sur ce produit" name="product_id" id="product_button" />
-            </form>
-        @endforeach
-        <div class="row justify-content-between">
 
-            <div class="top_articles col-3 " id="articles2">
+
+        <div class="row justify-content-between" id="articles1">
+
+            <div class="top_articles col-3" id="articles2">
                     <p>N°1 des ventes</p>
                     <div class="row">
                         <div class="col-12">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
+                            <img src="{{asset('img/cesi_logo.jpg')}}">
                         </div>
                         <div class="col-12">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
                         </div>
                     </div>
             </div>
 
 
 
-            <div class="top_articles col-3 offset-1" id="articles2">
+            <div class="top_articles col-3 offset-1" id="articles3">
                 <p>N°2 des ventes</p>
                     <div class="row">
                         <div class="col-12">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
+                            <img src="{{asset('img/cesi_logo.jpg')}}">
                         </div>
                         <div class="col-12">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
@@ -58,11 +54,11 @@
             </div>
 
 
-            <div class="top_articles col-3 offset-1" id="articles2">
+            <div class="top_articles col-3 offset-1" id="articles4">
                 <p>N°3 des ventes</p>
                 <div class="row">
                     <div class="col-12 ">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
+                        <img src="{{asset('img/cesi_logo.jpg')}}">
                     </div>
                     <div class="col-12">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum neque, quis dictum augue. In.
@@ -70,6 +66,28 @@
                 </div>
             </div>
         </div>
+    <div class="row justify-content-between bout_resp">
+        @foreach($products as $product)
+            <div class="top_articles col-2 mr-1 bout_resp1">
+                <div class="row">
+                        <div class="col-12">
+                            <img src="/storage/image/{{ $product->image->image_url }}"/>
+                        </div>
+                        <div class="col-12">
+                            <p>
+                            <p><strong><span>{{ $product->product_name }}</span></strong></p>
+                            <p>{{ $product->product_description }}</p>
+                            </p>
+                        </div>
+                </div>
+                <form  action="/produit/{{ $product->product_id }}" method="POST">
+                    @csrf
+                    <input type="submit" value="Plus sur ce produit" name="product_id" id="product_button" />
+                </form>
+            </div>
+        @endforeach
+    </div>
+
     <script src="{{ asset('js/accueil_boutique.js') }}"></script>
 
 @endsection
