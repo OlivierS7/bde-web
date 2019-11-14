@@ -76,7 +76,6 @@
     <div class="sticky-top">
         <div id="content">
             <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
                 <span>Barre de navigation</span>
             </button>
         </div>
@@ -85,14 +84,12 @@
     @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
     <div class="sticky-top">
         <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('disconnect')}}';">
-            <i class="fas fa-align-right"></i>
             <span>Se déconnecter</span>
         </button>
     </div>
     @else
     <div class="sticky-top">
-        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('connection')}}';">
-            <i class="fas fa-align-right"></i>
+        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('connection')}}';">Z²
             <span>Connexion / Inscription</span>
         </button>
     </div>

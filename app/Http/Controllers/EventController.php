@@ -97,24 +97,24 @@ class EventController extends Controller
     public function inscription($event_id){
         $user_id=session()->get('id');
         Participant::create(compact('user_id', 'event_id'));
-        return redirect('events');
+        return back();
     }
 
     public function deinscription($event_id){
         $user_id=session()->get('id');
         Participant::where(compact('user_id', 'event_id'))->delete();
-        return redirect('events');
+        return back();
     }
 
     public function like($event_id){
         $user_id=session()->get('id');
         Like::create(compact('user_id', 'event_id'));
-        return redirect('events');
+        return back();
     }
 
     public function unlike($event_id){
         $user_id=session()->get('id');
         Like::where(compact('user_id', 'event_id'))->delete();
-        return redirect('events');
+        return back();
     }
 }

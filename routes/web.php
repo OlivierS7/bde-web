@@ -39,9 +39,9 @@ Route::get('/boutique', 'ShopController@mainPage')->name('boutique');
 
 Route::get('/events', 'EventController@mainPage')->name('events');
 
-Route::post('/produit/{id}', 'ShopController@getOneProduct')->name('produit');
+Route::get('/produit/{id}', 'ShopController@getOneProduct')->name('produit');
 
-Route::post('/events/{id}', 'EventController@getOneEvent')->name('event');
+Route::get('/events/{id}', 'EventController@getOneEvent')->name('event');
 
 Route::get('/espace-membre', function(){
     return view('espace-membre');
@@ -67,13 +67,13 @@ Route::get('/insertEvent', function(){
 
 Route::post('/insertDatabaseEvent', 'EventController@insertEvent');
 
-Route::post('/events/{event_id}/inscription', 'EventController@inscription')->name('inscription');
+Route::get('/events/{event_id}/inscription', 'EventController@inscription')->name('inscription');
 
-Route::post('/events/{event_id}/deinscription', 'EventController@deinscription')->name('deinscription');
+Route::get('/events/{event_id}/deinscription', 'EventController@deinscription')->name('deinscription');
 
-Route::post('/events/{event_id}/like', 'EventController@like')->name('like');
+Route::get('/events/{event_id}/like', 'EventController@like')->name('like');
 
-Route::post('/events/{event_id}/unlike', 'EventController@unlike')->name('unlike');
+Route::get('/events/{event_id}/unlike', 'EventController@unlike')->name('unlike');
 
 Route::get('/boutique/panier', 'CartController@index')->name('panier');
 

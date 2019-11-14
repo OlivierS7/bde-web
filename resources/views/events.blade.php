@@ -20,7 +20,7 @@
             @if (($event->image->first()))
             <img src="/storage/image/{{ $event->image->first()->image_url }}" alt="">
             @endif
-            <form action="/events/{{ $event->event_id }}" method="POST">
+            <form action="/events/{{ $event->event_id }}" method="GET">
             @csrf
                 <input type="submit" value="Plus sur cet évènement" name="event_id" id="event_button" />
             </form>

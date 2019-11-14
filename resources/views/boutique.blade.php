@@ -84,7 +84,7 @@
                                 </p>
                             </div>
 
-                            <form action="/produit/{{ $product->product_id }}" method="POST">
+                            <form action="/produit/{{ $product->product_id }}" method="GET">
                                 @csrf
                                 <button class="form-control" type="submit" name="product_id" id="product_button">Plus sur ce produit</button>
                             </form>

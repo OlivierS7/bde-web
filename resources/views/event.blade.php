@@ -29,23 +29,23 @@
 @endif
 @if(Session::get('id'))
 @if($inscription)
-<form action="{{ route('inscription', $event->event_id) }}" method="POST">
+<form action="{{ route('inscription', $event->event_id) }}" method="GET">
     @csrf
     <input type="submit" value="S'inscrire" name="inscription" id="inscription_button" />
 </form>
 @else
-<form action="{{ route('deinscription', $event->event_id) }}" method="POST">
+<form action="{{ route('deinscription', $event->event_id) }}" method="GET">
     @csrf
     <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
 </form>
 @endif
 @if($like)
-<form action="{{ route('like', $event->event_id) }}" method="POST">
+<form action="{{ route('like', $event->event_id) }}" method="GET">
     @csrf
     <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i></button>
 </form>
 @else
-<form action="{{ route('unlike', $event->event_id) }}" method="POST">
+<form action="{{ route('unlike', $event->event_id) }}" method="GET">
     @csrf
     <div class='button' id='heart'>
     <button style="font-size:24px;color:red"><i class="fa fa-heart" name="unlike"></i></button>
