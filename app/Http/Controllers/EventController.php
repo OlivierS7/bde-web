@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Participant;
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
@@ -36,11 +37,19 @@ class EventController extends Controller
     public function getOneEvent($id)
     {
         $event = Event::find($id);
-        $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+;       $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+        $like = Like::where('user_id', session()->get('id'))->where('event_id', $id)->first();
         if($participate){
-            return view('event', ['event' => $event, 'inscription' => false]);
+            if($like){
+            return view('event', ['event' => $event, 'inscription' => false, 'like' => false]);
         }
-        return view('event', ['event' => $event, 'inscription' => true]);
+        return view('event', ['event' => $event, 'inscription' => false, 'like' => true]);
+        } else {
+            if($like){
+                return view('event', ['event' => $event, 'inscription' => true, 'like' => false]);
+            }
+        return view('event', ['event' => $event, 'inscription' => true, 'like' => true]);
+    }
     }
 
     public function insertEvent(Request $request)
@@ -94,6 +103,18 @@ class EventController extends Controller
     public function deinscription($event_id){
         $user_id=session()->get('id');
         Participant::where(compact('user_id', 'event_id'))->delete();
+        return redirect('events');
+    }
+
+    public function like($event_id){
+        $user_id=session()->get('id');
+        Like::create(compact('user_id', 'event_id'));
+        return redirect('events');
+    }
+
+    public function unlike($event_id){
+        $user_id=session()->get('id');
+        Like::where(compact('user_id', 'event_id'))->delete();
         return redirect('events');
     }
 }

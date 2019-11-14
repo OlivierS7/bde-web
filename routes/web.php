@@ -71,6 +71,10 @@ Route::post('/events/{event_id}/inscription', 'EventController@inscription')->na
 
 Route::post('/events/{event_id}/deinscription', 'EventController@deinscription')->name('deinscription');
 
+Route::post('/events/{event_id}/like', 'EventController@like')->name('like');
+
+Route::post('/events/{event_id}/unlike', 'EventController@unlike')->name('unlike');
+
 Route::get('/boutique/panier', 'CartController@index')->name('panier');
 
 Route::post('/deleteProduct', 'ShopController@deleteProduct')->name('deleteProduct');
