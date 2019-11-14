@@ -17,13 +17,18 @@
                 @if(Session::get('status') == "Membre BDE")
                     <form action="insertProduct" method="get">
                             <div>
-                                <button name="submit" type="submit" class="btn btn-secondary mt-2" id="add_article">Créer un nouveau produit</button>
+                                <button name="panier" type="submit" class="btn btn-secondary mt-2" id="add_article">Créer un nouveau produit</button>
                             </div>
                     </form>
                 @endif
             </div>
         </div>
     </div>
+    <form action="{{ route('panier') }}" method="get">
+        <div>
+            <button name="submit" type="submit" class="btn btn-secondary mt-2" id="cart_button">Votre panier</button>
+        </div>
+    </form>
 
 
         <div class="row justify-content-between" id="articles1">

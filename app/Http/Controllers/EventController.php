@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
@@ -35,7 +36,11 @@ class EventController extends Controller
     public function getOneEvent($id)
     {
         $event = Event::find($id);
-        return view('event', ['event' => $event]);
+        $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+        if($participate){
+            return view('event', ['event' => $event, 'inscription' => false]);
+        }
+        return view('event', ['event' => $event, 'inscription' => true]);
     }
 
     public function insertEvent(Request $request)
@@ -78,5 +83,17 @@ class EventController extends Controller
         $image = Image::whereIn('image_id', $id)->delete();
         $event = Event::where('event_id', '=', $idProduct)->delete();
         return redirect('/events');
+    }
+
+    public function inscription($event_id){
+        $user_id=session()->get('id');
+        Participant::create(compact('user_id', 'event_id'));
+        return redirect('events');
+    }
+
+    public function deinscription($event_id){
+        $user_id=session()->get('id');
+        Participant::where(compact('user_id', 'event_id'))->delete();
+        return redirect('events');
     }
 }

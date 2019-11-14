@@ -67,7 +67,11 @@ Route::get('/insertEvent', function(){
 
 Route::post('/insertDatabaseEvent', 'EventController@insertEvent');
 
-Route::get('/boutique/panier', 'CartController@index');
+Route::post('/events/{event_id}/inscription', 'EventController@inscription')->name('inscription');
+
+Route::post('/events/{event_id}/deinscription', 'EventController@deinscription')->name('deinscription');
+
+Route::get('/boutique/panier', 'CartController@index')->name('panier');
 
 Route::post('/deleteProduct', 'ShopController@deleteProduct')->name('deleteProduct');
 
