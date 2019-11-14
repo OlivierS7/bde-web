@@ -20,7 +20,6 @@ class ShopController extends Controller
         $product = Product::find($id);
         return view('produit', ['product' => $product]);
     }
-
     public function getInfoOnCategory()
     {
         $categories = DB::table('categories')
@@ -35,9 +34,10 @@ class ShopController extends Controller
         $description = request('product_description');
         $price = request('product_price');
         $image = request('product_image');
+        
         if ($this->validateRequest()) {
             $imageName = $request->file('product_image');
-            $imageId = Image::storeImage($image);
+            $imageId = Image::storeImageProduct($image);
             $product = DB::table('products')->insert($request->only(['product_category', 'product_name', 'product_description', 'product_price']) + ['image_id' => $imageId]);
             return redirect('/boutique');
         } else {
