@@ -14,7 +14,7 @@ class Image extends Model
     public $timestamps= false;
     public $primaryKey = 'image_id';
 
-    static function storeImage($imageName)
+    static function storeImageProduct($imageName)
     {
         $image = $imageName;
         $imageExtension = $imageName->getClientOriginalExtension();
@@ -27,5 +27,24 @@ class Image extends Model
             'user_id' => session('id'),
         ]);
         return $storedImage->image_id;
+    }
+
+    static function storeImageEvent($imageName, $event_id)
+    {
+        $image = $imageName;
+        $imageExtension = $imageName->getClientOriginalExtension();
+        $imageName = time() . '.' . $imageExtension;
+        $image->storeAs('image', $imageName, 'public');
+        $imageResize = ImageSize::make(public_path('storage/image/'.$imageName))->resize(300,300)->save();
+        $storedImage = Image::create([
+            'image_url' => $imageName,
+            'event_id' => $event_id,
+            'user_id' => session('id'),
+        ]);
+        return $storedImage->image_id;
+    }
+
+    public function event(){
+        return $this->hasMany('App\Event', 'event_id', 'event_id');
     }
 }

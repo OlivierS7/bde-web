@@ -10,7 +10,7 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-body">
-                <p class="card-title text-center">Insérer un nouveau produit</p>
+                <p class="card-title text-center">Créer un nouveau produit</p>
                 <form class="form-signin" action="insertDatabaseProduct" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-label-group">
@@ -51,4 +51,10 @@
 </div>
 @endif
 
+@endsection
+
+@extends('layout')
+
+@section('link')
+<link rel="stylesheet" href="{{ asset('css/insertProduct.css') }}">
 @endsection
