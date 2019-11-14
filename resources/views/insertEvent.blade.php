@@ -15,17 +15,17 @@
                     @csrf
                     <div class="form-label-group">
                         <label>Nom de l'évènement :</label>
-                        <input type="text" name="event_name" class="form-control" placeholder="Nom du produit"
+                        <input type="text" name="event_name" class="form-control" placeholder="Nom de l'évènement"
                             required>
                     </div>
                     <div class="form-label-group">
                         <label>Description de l"évènement (20 caractères minimum) :</label>
                         <textarea type="text" name="event_description" class="form-control"
-                            placeholder="Description du produit" required></textarea>
+                            placeholder="Description de l'évènement" required></textarea>
                     </div>
                     <div class="form-label-group">
                         <label>Prix de l'évènement :</label>
-                        <input type="text" name="event_price" class="form-control" placeholder="Prix du produit"
+                        <input type="text" name="event_price" class="form-control" placeholder="Prix de l'évènement"
                             required>
                     </div>
                     <div class="form-label-group">
@@ -39,7 +39,7 @@
                     </div>
 
                     <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit">Poster
-                        l'article</button>
+                        l'évènement</button>
                     @include('flash-message')
                 </form>
             </div>

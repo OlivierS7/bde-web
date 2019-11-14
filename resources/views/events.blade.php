@@ -8,7 +8,7 @@
         <form action="insertEvent" method="get">
             <div class="form-group row">
                 <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Créer un nouveau produit</button>
+                    <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Créer un évènement</button>
                 </div>
             </div>
         </form>

@@ -55,4 +55,12 @@ class ShopController extends Controller
             'product_image' => 'required|image|file|max:10000',
         ]);
     }
+
+    public function deleteProduct(Request $request){
+        $idProduct = request('id_product');
+        $idImage = request('id_image');
+        $product = Product::where('product_id', '=', $idProduct)->delete();
+        $image = Image::where('image_id', '=', $idImage)->delete();
+        return redirect('/boutique');
+    }
 }

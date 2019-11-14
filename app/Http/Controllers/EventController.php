@@ -15,20 +15,11 @@ class EventController extends Controller
 
     public function mainPage()
     {
-       // $images = new stdClass;
         $events = Event::all();
-    // foreach($events as $event)
-    // {
-    //     $id = $event->event_id;
-    //     $images->$id = $this->isImage($event->event_id);
-        
-    // }
-    //$events = $this->linkImageToEvent($images ,$events);
         return view('events', ['events' => $events]);
     }
 
     public function linkImageToEvent($images, $events){
-        //dd($events);
         foreach($events as $event){
             $event->image = null;
             foreach($images as $image){
@@ -43,18 +34,7 @@ class EventController extends Controller
 
     public function getOneEvent($id)
     {
-        //$images = new stdClass;
         $event = Event::find($id);
-        //$id = $event->event_id;
-        //$images->$id = $this->isImage($event->event_id);
-        //$event = json_encode($event);
-        //$event = '[' . $event . ']';
-        //$event = json_decode($event);
-        //$event = $this->linkImageToEvent($images ,$event);
-        //$event = json_encode($event);
-        //$event = str_replace('[', ' ', $event);
-        //$event = str_replace(']', ' ', $event);
-        //$event = json_decode($event);
         return view('event', ['event' => $event]);
     }
 
@@ -88,38 +68,15 @@ class EventController extends Controller
         return $images;
     }
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Event $event)
-    {
-        //
-    }
-
-    public function edit(Event $event)
-    {
-        //
-    }
-
-    public function update(Request $request, Event $event)
-    {
-        //
-    }
-
-    public function destroy(Event $event)
-    {
-        //
+    public function deleteEvent(Request $request){
+        $id = array();
+        $idProduct = request('id_event');
+        $idImage = json_decode(request('id_image'));
+        foreach($idImage as $image){
+            array_push($id, $image->image_id);
+        }
+        $image = Image::whereIn('image_id', $id)->delete();
+        $event = Event::where('event_id', '=', $idProduct)->delete();
+        return redirect('/events');
     }
 }
