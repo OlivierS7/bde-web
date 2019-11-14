@@ -22,7 +22,8 @@
         @foreach($products as $product)
             <p>Produit: {{ $product->product_name }}</p>
             <p>Description: {{ $product->product_description }}</p>
-            <p><img src="{{ $product->image_url }}"/></p>
+            <p>Catégorie: {{ $product->category->category_name }}</p>
+            <p><img src="/storage/image/{{ $product->image->image_url }}"/></p>
             <form action="/produit/{{ $product->product_id }}" method="POST">
             @csrf
                 <input type="submit" value="Plus sur ce produit" name="product_id" id="product_button" />
