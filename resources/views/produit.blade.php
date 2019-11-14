@@ -7,11 +7,12 @@
         <p>Description: {{ $product->product_description }}</p>
         <p><img src="/storage/image/{{ $product->image->image_url }}"/></p>
         <p>Prix: {{ $product->product_price }}€</p>
-
+        @if(Session::get('status') != null)
         <form action="{{ route('ajouter', $product->product_id) }}" method="POST">
             @csrf
             <input type="submit" value="Ajouter au panier" name="add" />
         </form>
+        @endif
         @if(Session::get('status') == "Membre BDE")
         <form action="{{ route('deleteProduct') }}" method="POST">
             @csrf

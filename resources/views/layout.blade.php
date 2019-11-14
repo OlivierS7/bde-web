@@ -84,14 +84,14 @@
 
     @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)
     <div class="sticky-top">
-        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = 'disconnect';">
+        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('disconnect')}}';">
             <i class="fas fa-align-right"></i>
             <span>Se déconnecter</span>
         </button>
     </div>
     @else
     <div class="sticky-top">
-        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = 'connection';">
+        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('connection')}}';">
             <i class="fas fa-align-right"></i>
             <span>Connexion / Inscription</span>
         </button>

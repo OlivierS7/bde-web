@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as HTTPRequest;
 use Session;
+use Illuminate\Support\Facades\Cookie;
 
 class UserController extends Controller
 {
@@ -111,7 +112,8 @@ class UserController extends Controller
 
     public function disconnectUser(){
         Session::flush();
-        return redirect('/')->with('success','Déconnection effectuée');
+
+        return redirect('/')->withCookie(Cookie::forget('panier'))->with('success','Déconnection effectuée');
     }
 
     public function updatePasswordUser(Request $request){
