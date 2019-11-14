@@ -36,7 +36,7 @@ class ShopController extends Controller
         $price = request('product_price');
         $image = request('product_image');
         if ($this->validateRequest()) {
-            $imageName = $request->file('product_image')->store('product_image');
+            $imageName = $request->file('product_image');
             $imageId = Image::storeImage($image);
             $product = DB::table('products')->insert($request->only(['product_category', 'product_name', 'product_description', 'product_price']) + ['image_id' => $imageId]);
             return redirect('/boutique');

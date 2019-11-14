@@ -37,15 +37,15 @@ Route::get('/contact', function(){
 
 Route::get('/boutique', 'ShopController@mainPage')->name('boutique');
 
+Route::get('/events', 'EventController@mainPage')->name('events');
+
 Route::post('/produit/{id}', 'ShopController@getOneProduct')->name('produit');
+
+Route::post('/events/{id}', 'EventController@getOneEvent')->name('event');
 
 Route::get('/espace-membre', function(){
     return view('espace-membre');
 })->name('espace-membre');
-
-Route::get('/events', function(){
-    return view('events');
-})->name('events');
 
 Route::post('/add-user', 'UserController@addUser');
 
@@ -60,6 +60,12 @@ Route::post('/contact-mail', 'ContactController@mailTo');
 Route::get('/insertProduct', 'ShopController@getInfoOnCategory');
 
 Route::post('/insertDatabaseProduct', 'ShopController@insertProduct');
+
+Route::get('insertEvent', function(){
+    return view('insertEvent');
+});
+
+Route::post('/insertDatabaseEvent', 'EventController@insertEvent');
 
 Route::get('/panier', 'CartController@index');
 
