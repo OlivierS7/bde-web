@@ -68,22 +68,26 @@
         </div>
     <div class="row justify-content-between bout_resp">
         @foreach($products as $product)
-            <div class="top_articles col-2 mr-1 bout_resp1">
-                <div class="row">
-                        <div class="col-12">
-                            <img src="/storage/image/{{ $product->image->image_url }}"/>
-                        </div>
-                        <div class="col-12">
-                            <p>
-                            <p><strong><span>{{ $product->product_name }}</span></strong></p>
-                            <p>{{ $product->product_description }}</p>
-                            </p>
-                        </div>
+            <div class=" col-2 mr-1 bout_resp1">
+                <div class="row d-flex flex-column justify-content-center top_articles">
+                            <div class="col-12">
+                                <img src="/storage/image/{{ $product->image->image_url }}"/>
+                            </div>
+
+                            <div class="col-12">
+                                <p>
+                                <p><strong><span>{{ $product->product_name }}</span></strong></p>
+                                <p>{{ $product->product_description }}</p>
+                                </p>
+                            </div>
+
+                            <form action="/produit/{{ $product->product_id }}" method="POST">
+                                @csrf
+                                <button class="form-control" type="submit" name="product_id" id="product_button">Plus sur ce produit</button>
+                            </form>
+
                 </div>
-                <form  action="/produit/{{ $product->product_id }}" method="POST">
-                    @csrf
-                    <input type="submit" value="Plus sur ce produit" name="product_id" id="product_button" />
-                </form>
+
             </div>
         @endforeach
     </div>
