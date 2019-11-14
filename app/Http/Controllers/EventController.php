@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Image;
 use stdClass;
 
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use function GuzzleHttp\json_decode;
 
 class EventController extends Controller
@@ -77,11 +78,6 @@ class EventController extends Controller
         ]);
     }
 
-    public function isImage($event_id){
-        $images = Image::where('event_id', 3)->get();
-        return $images;
-    }
-
     public function deleteEvent(Request $request){
         $id = array();
         $idProduct = request('id_event');
@@ -116,5 +112,12 @@ class EventController extends Controller
         $user_id=session()->get('id');
         Like::where(compact('user_id', 'event_id'))->delete();
         return back();
+    }
+
+    public function comment(Request $request){
+        $user_id=session()->get('id');
+        $event_id = 0;
+        Comment::create(compact('user_id', 'event_id', 'comment_content'));
+        return redirect('events');
     }
 }

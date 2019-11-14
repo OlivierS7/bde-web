@@ -52,5 +52,11 @@
     </div>
 </form>
 @endif
+<form action="{{ route('insertComment', $event->event_id) }}" method="GET">
+    @csrf
+    <div class='button'>
+        <input type="submit" value="Comment" name="Laisser un commentaire" id="comment_button" />
+    </div>
+</form>
 @endif
 @endsection

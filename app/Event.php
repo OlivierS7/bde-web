@@ -14,6 +14,10 @@ class Event extends Model
        return $this->hasMany('App\Image', 'event_id', 'event_id');
     }
 
+    public function comment(){
+        return $this->hasMany('App\Comment', 'event_id', 'event_id');
+    }
+
     //public function category(){
      //   return $this->hasOne('App\Categorie', 'category_id', 'product_category');
     //}
