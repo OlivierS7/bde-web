@@ -17,7 +17,7 @@ $(document).ready(function() {
                         enabled: true,
                     }
                 },
-                theme: "dark"
+                theme: "square"
             };
             $("#recherche").easyAutocomplete(options);
         },

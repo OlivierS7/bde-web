@@ -1,6 +1,7 @@
 @extends('layout')
 @section('link')
     <link rel="stylesheet" href="{{ asset('css/boutique.css') }}">
+    <link rel="stylesheet" href="{{ asset('easy-autocomplete.min.css') }}">
 @endsection
 
 @section('content')
@@ -9,11 +10,8 @@
     <div class="container-fluid search-art1">
         <div class="container-fluid search-art1">
             <div class="col-4 alone_border" id="Alone">
-                <p style="color: orange">Un article en particulier ?</p>
-                <form>
-                    <input type="text" class="form-control" id="recherche">
-                    <button type="submit" class="btn btn-primary mt-2" style="background: #17a2b8" >Rechercher</button>
-                </form>
+                <p style="color: rgb(248, 200, 44)">Un article en particulier ?</p>
+                <input type="text" class="form-control" id="recherche" placeholder="Article...">
                 @if(Session::get('status') == "Membre BDE")
                     <form action="insertProduct" method="get">
                             <div>
@@ -96,7 +94,11 @@
             </div>
         @endforeach
     </div>
+@endsection
 
-    <script src="{{ asset('js/accueil_boutique.js') }}"></script>
 
+@section('script')   
+<script src="{{ asset('js/jquery.easy-autocomplete.min.js') }}"></script>
+<script src="{{ asset('js/autocompletion.js') }}"></script>
+<script src="{{ asset('js/accueil_boutique.js') }}"></script>
 @endsection

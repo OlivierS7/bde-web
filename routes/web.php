@@ -80,3 +80,6 @@ Route::post('/deleteEvent', 'EventController@deleteEvent')->name('deleteEvent');
 Route::post('/ajouter/{id}', 'CartController@addProductToCart')->name('ajouter');
 
 Route::post('/boutique/panier/validate', 'CartController@validateCart')->name('validateCart');
+
+Route::get('/boutique/produit/{id}', 'ShopController@getOneProduct')->name('boutique-produit');
+Route::get('/productList', 'ShopController@listProduct');
