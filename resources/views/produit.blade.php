@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('link')
+    <link rel="stylesheet" href="{{asset('css/produit_simple.css')}}">
+@endsection
 @section('content')
         <p>Produit: {{ $product->product_name }}</p>
         <p>Description: {{ $product->product_description }}</p>
