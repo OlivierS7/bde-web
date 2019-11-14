@@ -61,16 +61,18 @@ Route::get('/insertProduct', 'ShopController@getInfoOnCategory');
 
 Route::post('/insertDatabaseProduct', 'ShopController@insertProduct');
 
-Route::get('insertEvent', function(){
+Route::get('/insertEvent', function(){
     return view('insertEvent');
 });
 
 Route::post('/insertDatabaseEvent', 'EventController@insertEvent');
 
-Route::get('/panier', 'CartController@index');
+Route::get('/boutique/panier', 'CartController@index');
 
 Route::post('/deleteProduct', 'ShopController@deleteProduct')->name('deleteProduct');
 
 Route::post('/deleteEvent', 'EventController@deleteEvent')->name('deleteEvent');
 
 Route::post('/ajouter/{id}', 'CartController@addProductToCart')->name('ajouter');
+
+Route::post('/boutique/panier/validate', 'CartController@validateCart')->name('validateCart');
