@@ -1,0 +1,28 @@
+.article{
+    border: .15em solid goldenrod;
+    background-color: rgb(211 211 211);
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 1em;
+
+
+}
+.pic_border{
+
+}
+@media (min-width: 1255px) {
+    img{
+        width: 300px;
+    }
+}
+
+@media (max-width: 1255px) {
+    img{
+        width: 300px;
+    }
+}
+@media (max-width: 400px) {
+    img{
+        width: 200px;
+    }
+}
