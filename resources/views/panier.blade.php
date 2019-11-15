@@ -14,6 +14,7 @@
     <p>Prix total: {{ $totalPrice }}€</p>
     <form action="{{ route('validateCart') }}" method="POST">
         @csrf
+    <input type="hidden" value="{{ $totalPrice }}" name="totalPrice">
         <input type="submit" value="Confirmer les achats" name="validate" id="validate_button" />
     </form>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use App\Mail\MailTrap;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -51,6 +53,7 @@ class CartController extends Controller
     }
 
     public function validateCart(){
+        Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
         return redirect('boutique')->withCookie(Cookie::forget('panier'));
     }
 
@@ -81,7 +84,7 @@ class CartController extends Controller
             }
             $cookie = json_encode($panier);
         } else {
-            $cookie = array('id' => $id,'quantity' => 1);
+            $cookie = array(array('id' => $id,'quantity' => 1));
             $cookie = json_encode($cookie);
         }
         return redirect('boutique')->cookie('panier', $cookie, $time);
