@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Image;
 use App\Comment;
 use stdClass;
+use Carbon\Carbon;
 
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use function GuzzleHttp\json_decode;
@@ -36,23 +37,46 @@ class EventController extends Controller
         return $events;
     }
 
+    public function getTotalLikes($event_id){
+        $likes = Like::find($event_id);
+        if($likes){
+            return $likes->count();
+        }
+        return 0;
+    }
+
     public function getOneEvent($id)
     {
         $event = Event::find($id);
-;       $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
         $like = Like::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+        $totalLikes = $this->getTotalLikes($event->event_id);
         $comments = $this->getComments($id);
-        if($participate){
-            if($like){
-            return view('event', ['event' => $event, 'inscription' => false, 'like' => false, 'comments' => $comments]);
-        }
-        return view('event', ['event' => $event, 'inscription' => false, 'like' => true, 'comments' => $comments]);
-        } else {
-            if($like){
-                return view('event', ['event' => $event, 'inscription' => true, 'like' => false, 'comments' => $comments]);
+        $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+        if(!$this->isPassed($event->event_date)){
+            if($participate){
+                if($like){
+                    return view('event', ['event' => $event, 'inscription' => false, 'like' => false, 'comments' => $comments, 'isPassed'=>false, 'totalLikes' => $totalLikes]);
+                }
+                return view('event', ['event' => $event, 'inscription' => false, 'like' => true, 'comments' => $comments, 'isPassed'=>false, 'totalLikes' => $totalLikes]);
+            } else {
+                if($like){
+                    return view('event', ['event' => $event, 'inscription' => true, 'like' => false, 'comments' => $comments, 'isPassed'=>false, 'totalLikes' => $totalLikes]);
+                }
+                return view('event', ['event' => $event, 'inscription' => true, 'like' => true, 'comments' => $comments, 'isPassed'=>false, 'totalLikes' => $totalLikes]);
             }
-        return view('event', ['event' => $event, 'inscription' => true, 'like' => true, 'comments' => $comments]);
-    }
+        } else {
+            if($participate){
+                if($like){
+                    return view('event', ['event' => $event, 'inscription' => false, 'like' => false, 'comments' => $comments, 'isPassed'=>true, 'totalLikes' => $totalLikes]);
+                }
+                return view('event', ['event' => $event, 'inscription' => false, 'like' => true, 'comments' => $comments, 'isPassed'=>true, 'totalLikes' => $totalLikes]);
+            } else {
+                if($like){
+                    return view('event', ['event' => $event, 'inscription' => true, 'like' => false, 'comments' => $comments, 'isPassed'=>true, 'totalLikes' => $totalLikes]);
+                }
+                return view('event', ['event' => $event, 'inscription' => true, 'like' => true, 'comments' => $comments, 'isPassed'=>true, 'totalLikes' => $totalLikes]);
+            }
+        }
     }
 
     public function insertEvent(Request $request)
@@ -73,6 +97,15 @@ class EventController extends Controller
         }
     }
 
+    public function isPassed($event_date){
+        $date = Carbon::now()->year . '-' . Carbon::now()->month . '-' . Carbon::now()->day;
+        if($event_date < $date){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function insertComment($event_id){
         return view('insertComment', ['event_id' => $event_id]);
     }
@@ -83,17 +116,26 @@ class EventController extends Controller
     }
 
     public function deleteComment($id){
-        Comment::find($id)->delete();
+        $comment = Comment::find($id);
+        Image::where('image_id', $comment->image_id)->delete();
+        $comment->delete();
         return redirect('events');
     }
 
     public function comment(Request $request){
+
         $user_id=session()->get('id');
         $event_id = Request('event_id');
-        $comment_content = Request('event_comment');
-        Comment::create(compact('user_id', 'event_id', 'comment_content'));
-        return redirect('events');
-    }
+        $comment_content = Request('comment_content');
+            if($request->file('comment_image')){
+                $imageName = $request->file('comment_image');
+                $imageId = Image::storeImageComment($imageName);
+                Comment::create(['user_id' => $user_id, 'event_id' => $event_id, 'comment_content' => $comment_content, 'image_id' => $imageId]);
+            } else {
+                Comment::create(compact('user_id', 'event_id', 'comment_content'));
+            }
+            return redirect('events');
+        }
 
     private function validateRequest()
     {

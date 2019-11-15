@@ -10,15 +10,18 @@
         <div class="card card-signin my-5">
             <div class="card-body">
                 <p class="card-title text-center">Créer un commentaire</p>
-                <form class="form-signin" action="{{ route('comment')}}" method="post" enctype="multipart/form-data">
+                <form class="form-signin" action="{{ route('comment')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-label-group">
                         <label>A propos de cet évènement:</label>
-                        <textarea type="text" name="event_comment" class="form-control"
+                        <textarea type="text" name="comment_content" class="form-control"
                             placeholder="Que pensez vous de cet évènement ?" required></textarea>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit" name="event_id" value="{{ $event_id }}">Poster
-                        l'évènement</button>
+                    <div class="form-label-group d-flex flex-column">
+                        <label>Ajout d'une photo (optionnel) :</label>
+                        <input type="file" name="comment_image">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit" name="event_id" value="{{ $event_id }}">Ajouter un commentaire</button>
                     @include('flash-message')
                 </form>
             </div>

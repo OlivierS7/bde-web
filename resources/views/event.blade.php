@@ -50,12 +50,12 @@
 </form>
 @endif
 @if(Session::get('id'))
-@if($inscription)
+@if($inscription && !$isPassed)
 <form action="{{ route('inscription', $event->event_id) }}" method="GET">
     @csrf
     <input type="submit" value="S'inscrire" name="inscription" id="inscription_button" />
 </form>
-@else
+@elseif(!$isPassed)
 <form action="{{ route('deinscription', $event->event_id) }}" method="GET">
     @csrf
     <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
@@ -64,25 +64,31 @@
 @if($like)
 <form action="{{ route('like', $event->event_id) }}" method="GET">
     @csrf
-    <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i></button>
+    <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
 </form>
 @else
 <form action="{{ route('unlike', $event->event_id) }}" method="GET">
     @csrf
     <div class='button' id='heart'>
-    <button style="font-size:24px;color:red"><i class="fa fa-heart" name="unlike"></i></button>
+    <button style="font-size:24px;color:red"><i class="fa fa-heart" name="unlike"></i> {{ $totalLikes }}</button>
     </div>
 </form>
 @endif
+@if($isPassed && !$inscription)
 <form action="{{ route('insertComment', $event->event_id) }}" method="POST">
     @csrf
     <div class='button'>
         <input type="submit" value="Comment" name="Laisser un commentaire" id="comment_button" />
     </div>
 </form>
+    @endif
 @endif
     @foreach($comments as $key=>$comment)
-        <p>{{ $key+1 }}-Commentaire: {{ $comment->comment_content }}</p>
+        <p>{{ $key+1 }}-Commentaire: {{ $comment->comment_content }}
+        @if($comment->image)
+        <img src="/storage/image/{{ $comment->image->image_url }}"/>
+        @endif
+        </p>
         @if(Session::get('status') == "Membre BDE")
         <form action="{{ route('deleteComment', $comment->comment_id) }}" method="POST">
             @csrf
