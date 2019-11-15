@@ -75,11 +75,11 @@ Route::get('/events/{event_id}/like', 'EventController@like')->name('like');
 
 Route::get('/events/{event_id}/unlike', 'EventController@unlike')->name('unlike');
 
-Route::get('/events/{event_id}/insertComment', function(){
-    return view('insertComment');
-})->name('insertComment');
+Route::post('/events/{event_id}/insertComment', 'EventController@insertComment')->name('insertComment');
 
-Route::post('/events/{event_id}/comment', 'EventController@comment')->name('comment');
+Route::post('/events/comment', 'EventController@comment')->name('comment');
+
+Route::post('/events/comments/{comment_id}/deleteComment', 'EventController@deleteComment')->name('deleteComment');
 
 
 Route::get('/boutique/panier', 'CartController@index')->name('panier');

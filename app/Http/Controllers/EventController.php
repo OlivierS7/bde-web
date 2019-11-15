@@ -8,6 +8,7 @@ use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
+use App\Comment;
 use stdClass;
 
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -40,16 +41,17 @@ class EventController extends Controller
         $event = Event::find($id);
 ;       $participate = Participant::where('user_id', session()->get('id'))->where('event_id', $id)->first();
         $like = Like::where('user_id', session()->get('id'))->where('event_id', $id)->first();
+        $comments = $this->getComments($id);
         if($participate){
             if($like){
-            return view('event', ['event' => $event, 'inscription' => false, 'like' => false]);
+            return view('event', ['event' => $event, 'inscription' => false, 'like' => false, 'comments' => $comments]);
         }
-        return view('event', ['event' => $event, 'inscription' => false, 'like' => true]);
+        return view('event', ['event' => $event, 'inscription' => false, 'like' => true, 'comments' => $comments]);
         } else {
             if($like){
-                return view('event', ['event' => $event, 'inscription' => true, 'like' => false]);
+                return view('event', ['event' => $event, 'inscription' => true, 'like' => false, 'comments' => $comments]);
             }
-        return view('event', ['event' => $event, 'inscription' => true, 'like' => true]);
+        return view('event', ['event' => $event, 'inscription' => true, 'like' => true, 'comments' => $comments]);
     }
     }
 
@@ -69,6 +71,28 @@ class EventController extends Controller
         } else {
             return back()->with('warning','Champ');
         }
+    }
+
+    public function insertComment($event_id){
+        return view('insertComment', ['event_id' => $event_id]);
+    }
+
+    public function getComments($event_id){
+        $comments = Comment::where('event_id', $event_id)->get();
+        return $comments;
+    }
+
+    public function deleteComment($id){
+        Comment::find($id)->delete();
+        return redirect('events');
+    }
+
+    public function comment(Request $request){
+        $user_id=session()->get('id');
+        $event_id = Request('event_id');
+        $comment_content = Request('event_comment');
+        Comment::create(compact('user_id', 'event_id', 'comment_content'));
+        return redirect('events');
     }
 
     private function validateRequest()
@@ -115,12 +139,5 @@ class EventController extends Controller
         $user_id=session()->get('id');
         Like::where(compact('user_id', 'event_id'))->delete();
         return back();
-    }
-
-    public function comment(Request $request){
-        $user_id=session()->get('id');
-        $event_id = 0;
-        Comment::create(compact('user_id', 'event_id', 'comment_content'));
-        return redirect('events');
     }
 }

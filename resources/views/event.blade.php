@@ -52,11 +52,20 @@
     </div>
 </form>
 @endif
-<form action="{{ route('insertComment', $event->event_id) }}" method="GET">
+<form action="{{ route('insertComment', $event->event_id) }}" method="POST">
     @csrf
     <div class='button'>
         <input type="submit" value="Comment" name="Laisser un commentaire" id="comment_button" />
     </div>
 </form>
 @endif
+    @foreach($comments as $key=>$comment)
+        <p>{{ $key+1 }}-Commentaire: {{ $comment->comment_content }}</p>
+        @if(Session::get('status') == "Membre BDE")
+        <form action="{{ route('deleteComment', $comment->comment_id) }}" method="POST">
+            @csrf
+            <input type="submit" value="Supprimer ce commentaire" name="comment" id="inscription_button" />
+        </form>
+        @endif
+    @endforeach
 @endsection
