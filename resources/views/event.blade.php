@@ -30,12 +30,6 @@
             </div>
 
         </div>
-        @if($like)
-            <form action="{{ route('like', $event->event_id) }}" method="GET">
-                @csrf
-                <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
-            </form>
-        @else
     </div>
 
 </form>
@@ -66,6 +60,12 @@
     <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
 </form>
 @endif
+@if($like)
+            <form action="{{ route('like', $event->event_id) }}" method="GET">
+                @csrf
+                <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
+            </form>
+        @else
 
 <form action="{{ route('unlike', $event->event_id) }}" method="GET">
     @csrf
@@ -74,6 +74,7 @@
     </div>
 </form>
 @endif
+
 @if($isPassed && !$inscription)
 <form action="{{ route('insertComment', $event->event_id) }}" method="POST">
     @csrf
@@ -81,7 +82,7 @@
         <input type="submit" value="Comment" name="Laisser un commentaire" id="comment_button" />
     </div>
 </form>
-    @endif
+@endif
 @endif
     @foreach($comments as $key=>$comment)
         <p>{{ $key+1 }}-Commentaire: {{ $comment->comment_content }}

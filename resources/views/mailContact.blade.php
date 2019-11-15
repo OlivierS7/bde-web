@@ -6,7 +6,11 @@
 <p>Adresse E-Mail de l'étudiant : {{ $mail }}</p>
 @endisset
 
-@isset ($produits, $id, $totalPrice)
+@isset ($produits, $id, $totalPrice, $mail, $firstName, $lastName)
+
+<p>Nom du client : {{ $firstName }} {{ $lastName }}</p>
+
+<p>Adresse du client : {{ $mail }}</p>
     
 @foreach ($produits as $produit)
 

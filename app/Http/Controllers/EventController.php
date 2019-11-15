@@ -38,7 +38,7 @@ class EventController extends Controller
     }
 
     public function getTotalLikes($event_id){
-        $likes = Like::find($event_id);
+        $likes = Like::all()->where('event_id', $event_id);
         if($likes){
             return $likes->count();
         }
