@@ -18,7 +18,7 @@
             <div class="col-12">
                 <p>{{ $product->category->category_name }}</p>
                 <p>{{ $product->product_description }}</p>
-
+                <p>Prix Unitaire: {{ $product->product_price }}€</p>
                 <p>Quantité: {{ $product->quantity }}</p>
             </div>
                     </div>

@@ -11,13 +11,13 @@
 
         <div class="col-4 alone_border" id="Alone">
             <p style="color: rgb(248, 200, 44)">Un article en particulier ?</p>
-            <div class="form-inline">
+            <div class="form-inline d-flex justify-content-center">
                 <input type="search" class="form-control" id="recherche" placeholder="Article...">
             </div>
 
             <div class="col">
                 <a class="btn  bg-light mt-1" href="sortDescPriceProduct">Trier les produits par prix décroissant</a>
-                <a class="btn  bg-light mt-1" href="sortASCPriceProduct">"Trier les produits par prix croissant</a>
+                <a class="btn  bg-light mt-1" href="sortASCPriceProduct">Trier les produits par prix croissant</a>
             </div>
 
 

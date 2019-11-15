@@ -107,6 +107,7 @@
                 <div class="col-md-12 d-flex justify-content-center">
                     <a href="{{route('contact')}}">Contact</a>
                     <a href="{{route('mentions-legales')}}">Mentions Légales</a>
+                    <a href="{{route('CGV')}}">Conditions Générale de Ventes</a>
                     <p>© 2019 | CESI BDE Saint-Nazaire</p>
                     <a href="{{route('disconnect')}}">Se déconnecter</a>
                 </div>
