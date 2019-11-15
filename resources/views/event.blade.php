@@ -27,10 +27,15 @@
                     </div>
                 </div>
 
-
             </div>
 
         </div>
+        @if($like)
+            <form action="{{ route('like', $event->event_id) }}" method="GET">
+                @csrf
+                <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
+            </form>
+        @else
     </div>
 
 </form>
@@ -44,7 +49,7 @@
     <div class="form-group row">
         <div class="offset-4 col-8">
             <button name="submit" type="submit" class="btn btn-primary" style="background: #17a2b8">Supprimer cet
-                évènementt</button>
+                évènement</button>
         </div>
     </div>
 </form>
@@ -61,12 +66,7 @@
     <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
 </form>
 @endif
-@if($like)
-<form action="{{ route('like', $event->event_id) }}" method="GET">
-    @csrf
-    <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
-</form>
-@else
+
 <form action="{{ route('unlike', $event->event_id) }}" method="GET">
     @csrf
     <div class='button' id='heart'>

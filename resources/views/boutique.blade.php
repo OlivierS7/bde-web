@@ -8,20 +8,20 @@
 
 
 <div class="container-fluid search-art1">
-    <div class="container-fluid search-art1">
+
         <div class="col-4 alone_border" id="Alone">
             <p style="color: rgb(248, 200, 44)">Un article en particulier ?</p>
-            <input type="text" class="form-control" id="recherche" placeholder="Article...">
-            <div class="row">
-
-                    <a class="col-6" href="sortDescPriceProduct"><input type="button" value="Trier les produits par prix décroissant"></a>
-
-
-                    <a class="col-4" href="sortASCPriceProduct"><input type="button" value="Trier les produits par prix croissant"></a>
-
-
+            <div class="form-inline">
+                <input type="search" class="form-control" id="recherche" placeholder="Article...">
             </div>
-            <form class="row col-lg-5 form-signin" action="sortCategoryProduct" method="get">
+
+            <div class="col">
+                <a class="btn  bg-light mt-1" href="sortDescPriceProduct">Trier les produits par prix décroissant</a>
+                <a class="btn  bg-light mt-1" href="sortASCPriceProduct">"Trier les produits par prix croissant</a>
+            </div>
+
+
+            <form class="col form-signin mt-1" action="sortCategoryProduct" method="get">
                 @csrf
                 <select class="form-control" name="product_category">
                     <option value="1">Sports et Loisirs</option>
@@ -33,7 +33,7 @@
                     <option value="7">Jeux</option>
                     <option value="8">Sac</option>
                 </select>
-                <button class="col-lg-5 btn btn-primary btn-block text-uppercase" type="submit">Effectuer la recherche</button>
+                <button class="col-6 btn btn-primary mt-1" type="submit">Effectuer la recherche</button>
             </form>
 
             @if(Session::get('status') == "Membre BDE")
@@ -47,12 +47,12 @@
             @if(Session::get('status') != NULL)
                 <form action="{{ route('panier') }}" method="get">
                     <div>
-                        <button name="submit" type="submit" class="btn btn-outline-primary mt-2" id="cart_button">Votre panier</button>
+                        <button name="submit" type="submit" class="btn btn-outline-primary mt-2 mb-1" id="cart_button">Votre panier</button>
                     </div>
                 </form>
             @endif
         </div>
-    </div>
+
 </div>
 
 
