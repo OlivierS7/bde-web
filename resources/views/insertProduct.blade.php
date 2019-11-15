@@ -41,7 +41,7 @@
                         <input type="file" name="product_image">
                     </div>
 
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase btn-connection" type="submit">Poster
+                    <button class="btn btn-lg btn-block text-uppercase btn-connection" type="submit">Poster
                         l'article</button>
                     @include('flash-message')
                 </form>

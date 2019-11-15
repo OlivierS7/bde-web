@@ -96,3 +96,7 @@ Route::get('/boutique/produit/{id}', 'ShopController@getOneProduct')->name('bout
 Route::get('/productList', 'ShopController@listProduct');
 
 Route::get('/download-images', 'ImageController@download');
+
+Route::get('/sortDescPriceProduct', 'ShopController@sortDescPrice');
+Route::get('/sortASCPriceProduct', 'ShopController@sortASCPrice');
+Route::get('/sortCategoryProduct', 'ShopController@sortChoiceCategory');

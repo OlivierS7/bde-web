@@ -21,6 +21,23 @@ class ShopController extends Controller
         $product = Product::find($id);
         return view('produit', ['product' => $product]);
     }
+
+    public function sortDescPrice(){
+        $products = Product::all()->sortByDesc('product_price');
+        return view('boutique', ['products' => $products]);
+    }
+
+    public function sortASCPrice(){
+        $products = Product::all()->sortBy('product_price');
+        return view('boutique', ['products' => $products]);
+    }
+
+    public function sortChoiceCategory(Request $request){
+        $category = request('product_category');
+        $products = Product::all()->where('product_category', '=', $category);
+        return view('boutique', ['products' => $products]);
+    }
+
     public function getInfoOnCategory()
     {
         $categories = DB::table('categories')
@@ -35,7 +52,7 @@ class ShopController extends Controller
         $description = request('product_description');
         $price = request('product_price');
         $image = request('product_image');
-        
+
         if ($this->validateRequest()) {
             $imageName = $request->file('product_image');
             $imageId = Image::storeImageProduct($image);
