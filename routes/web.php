@@ -1,15 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Mail\MailTrap;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\Request;
 
 Route::get('/', function () {
     return view('home');
@@ -55,7 +48,10 @@ Route::post('/user-update-password', 'UserController@updatePasswordUser');
 
 Route::get('/disconnect', 'UserController@disconnectUser')->name('disconnect');
 
-Route::post('/contact-mail', 'ContactController@mailTo');
+Route::post('/contact-mail', function(){
+    Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
+    return redirect()->to('contact');
+});
 
 Route::get('/insertProduct', 'ShopController@getInfoOnCategory');
 
@@ -100,3 +96,6 @@ Route::get('/download-images', 'ImageController@download');
 Route::get('/sortDescPriceProduct', 'ShopController@sortDescPrice');
 Route::get('/sortASCPriceProduct', 'ShopController@sortASCPrice');
 Route::get('/sortCategoryProduct', 'ShopController@sortChoiceCategory');
+Route::get('/CGV', function(){
+    return view('CGV');
+})->name('CGV');

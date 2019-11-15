@@ -76,7 +76,7 @@
                     <p id="passwordMatch">Les mots de passes correspondent.</p>
                 </div>
                 <div class="form-label-group"  style="margin-bottom: 3%;"">
-                    <label for="inputCheckBox">Accepter les <a href="mentions-legales"><U>conditions du règlement</U></a> (stockage des informations personnelles, droit à l’oubli) :</label>
+                    <label for="inputCheckBox">Accepter <a href="mentions-legales"><U>les mentions légales</U></a> et <a href="CGV"><U>les conditions générale de ventes</U></a>(stockage des informations personnelles, droit à l’oubli) :</label>
                     <input type="checkbox" name="checkbox" class="form-control" required
                         autofocus>
                 </div>
