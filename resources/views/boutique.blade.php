@@ -1,7 +1,7 @@
 @extends('layout')
 @section('link')
     <link rel="stylesheet" href="{{ asset('css/boutique.css') }}">
-    <link rel="stylesheet" href="{{ asset('easy-autocomplete.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}">
 @endsection
 
 @section('content')
@@ -97,7 +97,7 @@
 @endsection
 
 
-@section('script')   
+@section('script')
 <script src="{{ asset('js/jquery.easy-autocomplete.min.js') }}"></script>
 <script src="{{ asset('js/autocompletion.js') }}"></script>
 <script src="{{ asset('js/accueil_boutique.js') }}"></script>

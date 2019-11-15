@@ -89,7 +89,7 @@
     </div>
     @else
     <div class="sticky-top">
-        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('connection')}}';">Z²
+        <button type="button" class="btn btn-info btn-right-connexion" onclick="window.location.href = '{{route ('connection')}}';">
             <span>Connexion / Inscription</span>
         </button>
     </div>
