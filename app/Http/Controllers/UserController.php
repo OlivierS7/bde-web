@@ -40,8 +40,23 @@ class UserController extends Controller
         $user_mail = request('mail');
         $user_password = request('password');
 
+
+        
         $client = new \GuzzleHttp\Client();
-        $url = "http://localhost:8001/users";
+
+        $url = "http://localhost:8001/connect";
+        $response = $client->request('GET', $url, [
+            'form_params' => [
+                'mail' => $request->mail,
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->token
+            ]
+        ]);
+        $isUser = json_decode($response->getBody()->getContents());
+
+        if(sizeof($isUser) == 0){
+            $url = "http://localhost:8001/users";
         $response = $client->request('POST', $url, [
             'form_params' => [
                 'mail' => $request->mail,
@@ -75,6 +90,10 @@ class UserController extends Controller
             return redirect('/home');
         }
         return redirect('/');
+        } else {
+
+        }
+        return back()->with('error','Mail déjà utilisé');
     }
 
     public function connectUser(Request $request){

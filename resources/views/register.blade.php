@@ -68,21 +68,22 @@
                     </div>
                     @enderror
                 </div>
-                <div class="form-label-group">
-                    <label for="inputCheckBox">Accepter les <a href="mentions-legales"><U>conditions du règlement</U></a> (stockage des informations personnelles, droit à l’oubli) :</label>
-                    <input type="checkbox" name="checkbox" class="form-control" required
-                        autofocus>
-                </div>
-                <div class="form-label-group" id="password-div2" style="margin-bottom: 3%;">
+                <div class="form-label-group" id="password-div2">
                     <label for="inputPassword">Vérification du mot de passe</label>
                     <input type="password" name="passwordVerif" class="form-control champ" id="passwordConfirmation"
                         placeholder="Mot de passe" required>
                     <p id="passwordMismatch">Les mots de passes ne correspondent pas.</p>
                     <p id="passwordMatch">Les mots de passes correspondent.</p>
                 </div>
+                <div class="form-label-group"  style="margin-bottom: 3%;"">
+                    <label for="inputCheckBox">Accepter les <a href="mentions-legales"><U>conditions du règlement</U></a> (stockage des informations personnelles, droit à l’oubli) :</label>
+                    <input type="checkbox" name="checkbox" class="form-control" required
+                        autofocus>
+                </div>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" id="inscriptionButton"
                     type="submit">S'inscrire</button>
             </form>
+            @include('flash-message')
         </div>
     </div>
 </div>

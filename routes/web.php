@@ -94,3 +94,5 @@ Route::post('/boutique/panier/validate', 'CartController@validateCart')->name('v
 
 Route::get('/boutique/produit/{id}', 'ShopController@getOneProduct')->name('boutique-produit');
 Route::get('/productList', 'ShopController@listProduct');
+
+Route::get('/download-images', 'ImageController@download');
