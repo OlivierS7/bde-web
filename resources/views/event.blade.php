@@ -2,15 +2,37 @@
 
 @section('link')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{asset('css/event_simple.css')}}" />
 @endsection
 
 @section('content')
-<p>Produit: {{ $event->event_name }}</p>
-<p>Description: {{ $event->event_description }}</p>
-<p>Prix: {{ $event->event_price }}€</p>
-@foreach ($event->image()->get() as $image)
-<img src="/storage/image/{{ $image->image_url }}" alt="">
-@endforeach
+    <div class="container">
+        <div class="event_border">
+            <div class="col">
+                    <p><strong>{{ $event->event_name }}</strong></p>
+            </div>
+            <div class="col">
+                <div class="row eve_resp">
+                    <div class="col-3 eve_resp1">
+                        <div class="desc_border eve_resp3">
+                            <p>{{ $event->event_description }}</p>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        @foreach ($event->image()->get() as $image)
+                            <img src="/storage/image/{{ $image->image_url }}" alt="">
+                        @endforeach
+                            <p><strong>Prix: {{ $event->event_price }}€</strong> </p>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
 </form>
 @if(Session::get('status') == "Membre BDE")
 <form action="{{ route('deleteEvent') }}" method="POST">
@@ -69,3 +91,12 @@
         @endif
     @endforeach
 @endsection
+@section('script')
+    <script src="{{asset('js/event_simple.js')}}"></script>
+@endsection
+<script>
+    import LineNumber from "../../vendor/facade/ignition/resources/js/components/Shared/LineNumber";
+    export default {
+        components: {LineNumber}
+    }
+</script>

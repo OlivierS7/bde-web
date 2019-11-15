@@ -1,8 +1,43 @@
-.event{
+body{
+background-color: lightgray;
+}
+.event_border{
     border: .15em solid goldenrod;
-    background-color: rgb(211 211 211);
+    background-color: white;
     text-align: center;
     margin-top: 3em;
     margin-bottom: 1em;
 
 }
+.desc_border{
+    border: .10em solid antiquewhite;
+    text-align: center;
+    background-color: whitesmoke;
+
+}
+.desc_border2{
+    border: .10em solid antiquewhite;
+    text-align: center;
+    background-color: whitesmoke;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+@media (min-width: 1255px) {
+    img{
+        width: 300px;
+    }
+}
+
+@media (max-width: 1255px) {
+    img{
+        width: 300px;
+    }
+}
+@media (max-width: 970px) {
+    img{
+        width: 180px;
+    }
+}
+
