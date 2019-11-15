@@ -75,6 +75,9 @@ class EventController extends Controller
     {
         return request()->validate([
             'event_name' => 'required',
+            'event_date' => 'required',
+            'event_price' => 'required|integer',
+            'event_description' => 'required|min:20',
         ]);
     }
 

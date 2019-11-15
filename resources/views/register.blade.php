@@ -68,6 +68,11 @@
                     </div>
                     @enderror
                 </div>
+                <div class="form-label-group">
+                    <label for="inputCheckBox">Accepter les <a href="mentions-legales"><U>conditions du règlement</U></a> (stockage des informations personnelles, droit à l’oubli) :</label>
+                    <input type="checkbox" name="checkbox" class="form-control" required
+                        autofocus>
+                </div>
                 <div class="form-label-group" id="password-div2" style="margin-bottom: 3%;">
                     <label for="inputPassword">Vérification du mot de passe</label>
                     <input type="password" name="passwordVerif" class="form-control champ" id="passwordConfirmation"
