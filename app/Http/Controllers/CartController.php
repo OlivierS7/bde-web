@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use App\Mail\MailTrap;
 use Illuminate\Support\Facades\Mail;
+use App\order;
+use App\Contain;
 
 class CartController extends Controller
 {
@@ -71,7 +74,13 @@ class CartController extends Controller
     }
 
     public function validateCart(){
-        //Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
+        $cart = Cookie::get('panier');
+        $cart = json_decode($cart, true);
+        $order = Order::create(['user_id'=>session()->get('id'), 'order_date' => Carbon::now()->year . '-' . Carbon::now()->month . '-' . Carbon::now()->day]);
+        foreach ($cart as $product){
+            Contain::create(['product_id' => $product['id'], 'order_id' => $order->order_id, 'quantity' => $product['quantity']]);
+        }
+        Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
         return redirect('boutique')->withCookie(Cookie::forget('panier'));
     }
 
