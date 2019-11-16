@@ -7,12 +7,7 @@
 
 @if(Session::get('status') != null)
 <div class="container">
-    <div class="row">
-        <div class="col-md-3 ">
-            <div class="list-group ">
-                <a href="#" class="list-group-item list-group-item-action active" style="background: #17a2b8">Profil</a>
-            </div>
-        </div>
+    <div class="row mt-5">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">

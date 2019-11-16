@@ -13,35 +13,39 @@
                 </div>
             </div>
         </form>
+        <p class="desc container d-flex flex-column justify-content-center"><strong>Passes ta souris dans ces cadres pour voir l'évènement</strong> </p>
         @endif
         <div class="row justify-content-between event_resp">
+
             @foreach($events as $event)
-                <div class="col-2 mr-1 event_resp1 fadein">
-                    <div class="row d-flex flex-column justify-content-center event_border">
+                <div class="col-2 mr-1 event_resp1">
+                    <div class="event_border">
+                        <div class="row d-flex flex-column justify-content-center fadein">
 
 
-                    <div class="col-12">
-                        <p><strong>{{ $event->event_name }}</strong></p>
-                        <p>{{ $event->event_description }}</p>
-                        <p>Le : {{ $event->event_date }}</p>
-                    </div>
-                    <div class="col-12">
-                        <div class="shadow rounded">
-                            @if (($event->image->first()))
-                                <img src="/storage/image/{{ $event->image->first()->image_url }}" alt="">
-                            @endif
+                            <div class="col-12">
+                                <p><strong>{{ $event->event_name }}</strong></p>
+                                <p>{{ $event->event_description }}</p>
+                                <p>Le : {{ $event->event_date }}</p>
+                            </div>
+                            <div class="col-12">
+                                <div class="shadow rounded">
+                                    @if (($event->image->first()))
+                                        <img src="/storage/image/{{ $event->image->first()->image_url }}" alt="">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-8 offset-2">
+                                <form action="/events/{{ $event->event_id }}" method="GET">
+                                    @csrf
+                                    <input class="form-control mt-1 mb-1 more" type="submit" value="Plus..." name="event_id" id="event_button" />
+                                </form>
+                            </div>
+
+
+
+
                         </div>
-                    </div>
-                        <div class="col-8 offset-2">
-                            <form action="/events/{{ $event->event_id }}" method="GET">
-                                @csrf
-                                <input class="form-control mt-1 mb-1 more" type="submit" value="Plus..." name="event_id" id="event_button" />
-                            </form>
-                        </div>
-
-
-
-
                     </div>
                 </div>
             @endforeach
