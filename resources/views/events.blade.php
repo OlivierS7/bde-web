@@ -16,7 +16,7 @@
         @endif
         <div class="row justify-content-between event_resp">
             @foreach($events as $event)
-                <div class="col-2 mr-1 event_resp1">
+                <div class="col-2 mr-1 event_resp1 fadein">
                     <div class="row d-flex flex-column justify-content-center event_border">
 
 

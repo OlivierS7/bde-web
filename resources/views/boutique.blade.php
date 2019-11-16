@@ -107,7 +107,10 @@
     <div class=" col-2 mr-1 bout_resp1">
         <div class="row d-flex flex-column justify-content-center top_articles">
             <div class="col-12">
-                <img src="/storage/image/{{ $product->image->image_url }}" />
+                <div class="mt-1 grow">
+                    <img src="/storage/image/{{ $product->image->image_url }}" />
+                </div>
+
             </div>
 
             <div class="col-12">
@@ -120,7 +123,7 @@
 
             <form action="/produit/{{ $product->product_id }}" method="GET">
                 @csrf
-                <button class="form-control more" type="submit" name="product_id" id="product_button">Plus sur ce
+                <button class="form-control more brighten " type="submit" name="product_id" id="product_button">Plus sur ce
                     produit</button>
             </form>
 

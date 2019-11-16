@@ -23,6 +23,15 @@ background-color: lightgray;
     margin-bottom: 1em;
 
 }
+.fadein{
+    opacity:0.5;
+    transition: 0.5s ease;
+}
+
+.fadein:hover{
+    opacity:1;
+    transition: 0.75s ease;
+}
 
 @media (min-width: 1255px) {
     img{

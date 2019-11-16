@@ -16,42 +16,48 @@
                 <div class="col-3 eve_resp1">
                     <div class="desc_border eve_resp3">
                         <p>{{ $event->event_description }}</p>
+                        @if(Session::get('id'))
+                            @if($inscription && !$isPassed)
+                                <form action="{{ route('inscription', $event->event_id) }}" method="GET">
+                                    @csrf
+                                    <input class="btn btn-outline-primary" type="submit" value="S'inscrire" name="inscription" id="inscription_button" />
+                                </form>
+                            @elseif(!$isPassed)
+                                <form action="{{ route('deinscription', $event->event_id) }}" method="GET">
+                                    @csrf
+                                    <input class="btn btn-outline-secondary" type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
+                                </form>
+                            @endif
                     </div>
 
                 </div>
-                <div class="col-6">
-                    @foreach ($event->image()->get() as $image)
-                    <img src="/storage/image/{{ $image->image_url }}" alt="">
-                    @endforeach
+                <div class="col-6 ">
+
+                        @foreach ($event->image()->get() as $image)
+                        <div class="fadein">
+                            <img src="/storage/image/{{ $image->image_url }}" alt="">
+                        </div>
+                        @endforeach
+
+
                     <p><strong>Prix: {{ $event->event_price }}€</strong> </p>
                 </div>
             </div>
 
         </div>
         <div class="col">
-            @if(Session::get('id'))
-            @if($inscription && !$isPassed)
-            <form action="{{ route('inscription', $event->event_id) }}" method="GET">
-                @csrf
-                <input type="submit" value="S'inscrire" name="inscription" id="inscription_button" />
-            </form>
-            @elseif(!$isPassed)
-            <form action="{{ route('deinscription', $event->event_id) }}" method="GET">
-                @csrf
-                <input type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
-            </form>
-            @endif
+
             @if($like)
             <form action="{{ route('like', $event->event_id) }}" method="GET">
                 @csrf
-                <button style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
+                <button class="btn" style="font-size:24px"><i class="fa fa-heart-o" name="like"></i> {{ $totalLikes }}</button>
             </form>
             @else
 
             <form action="{{ route('unlike', $event->event_id) }}" method="GET">
                 @csrf
                 <div class='button' id='heart'>
-                    <button style="font-size:24px;color:red"><i class="fa fa-heart" name="unlike"></i>
+                    <button class="btn" style="font-size:24px;color:red"><i class="fa fa-heart" name="unlike"></i>
                         {{ $totalLikes }}</button>
                 </div>
             </form>

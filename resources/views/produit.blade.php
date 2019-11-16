@@ -7,8 +7,10 @@
         <div class="article">
             <p><strong>{{ $product->product_name }}</strong></p>
             <p>{{ $product->product_description }}</p>
+            <div class="grow">
+                <img src="/storage/image/{{ $product->image->image_url }}"/>
+            </div>
 
-            <p><img src="/storage/image/{{ $product->image->image_url }}"/></p>
 
 
             <p>Prix: {{ $product->product_price }}€</p>
@@ -16,7 +18,7 @@
         @if(Session::get('status') != null)
             <form action="{{ route('ajouter', $product->product_id) }}" method="POST">
                 @csrf
-                <input type="submit" value="Ajouter au panier" name="add" />
+                <input class="btn btn-outline-primary" type="submit" value="Ajouter au panier" name="add" />
             </form>
         @endif
 
