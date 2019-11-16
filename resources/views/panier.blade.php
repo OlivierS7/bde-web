@@ -31,16 +31,19 @@
         </div>
 
     @endif
-    @if($products)
-    <p>Prix total: {{ $totalPrice }}€</p>
-    <form action="{{ route('validateCart') }}" method="POST">
-        @csrf
-    <input type="hidden" value="{{ $totalPrice }}" name="totalPrice">
-        <input type="submit" value="Confirmer les achats" name="validate" id="validate_button" />
-    </form>
+    <div class="container no_articles">
+        @if($products)
+            <p>Prix total: {{ $totalPrice }}€</p>
+            <form action="{{ route('validateCart') }}" method="POST">
+                @csrf
+                <input type="hidden" value="{{ $totalPrice }}" name="totalPrice">
+                <input type="submit" value="Confirmer les achats" name="validate" id="validate_button" />
+            </form>
         @else
-        <p>Vous n'avez aucun produits dans votre panier pour le moment</p>
-    @endif
+            <p>Vous n'avez aucun produit dans votre panier pour le moment...</p>
+        @endif
+    </div>
+
 @endsection
 @section('script')
 <script src="{{asset('js/panier.js')}}"></script>
