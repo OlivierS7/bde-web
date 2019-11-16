@@ -28,6 +28,7 @@
                                     <input class="btn btn-outline-secondary" type="submit" value="Se désinscrire" name="inscription" id="inscription_button" />
                                 </form>
                             @endif
+                        @endif
                     </div>
 
                 </div>
@@ -71,7 +72,7 @@
                 </div>
             </form>
             @endif
-            @endif
+
             @foreach($comments as $key=>$comment)
             <p>{{ $key+1 }}-Commentaire: {{ $comment->comment_content }}
                 @if($comment->image)

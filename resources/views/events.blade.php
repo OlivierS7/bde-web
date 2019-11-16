@@ -13,8 +13,9 @@
                 </div>
             </div>
         </form>
-        <p class="desc container d-flex flex-column justify-content-center"><strong>Passes ta souris dans ces cadres pour voir l'évènement</strong> </p>
+
         @endif
+        <p class="desc container d-flex flex-column justify-content-center"><strong>Passes ta souris dans ces cadres pour voir l'évènement</strong> </p>
         <div class="row justify-content-between event_resp">
 
             @foreach($events as $event)
