@@ -23,6 +23,7 @@ class CartController extends Controller
                 $cart = '[' . $cart . ']';
             }
             $cart = json_decode($cart, true);
+            if(!empty($cart[0])){
             $ids = array();
             foreach ($cart as $product) {
                 array_push($ids, $product['id']);
@@ -39,6 +40,7 @@ class CartController extends Controller
                 }
             }
             return view('panier', ['products' => $products, 'totalPrice' => $price]);
+            }
         }
         return view('panier', ['products' => null, 'totalPrice' => 0]);
     }
@@ -52,8 +54,24 @@ class CartController extends Controller
         return false;
     }
 
+    public function deleteProduct($id){
+        $time = 60*2;
+        $cart = Cookie::get('panier');
+        $cart = json_decode($cart, true);
+        foreach($cart as $key=>$product){
+            if($product['id'] == $id){
+                $cart[$key]['quantity'] = $product['quantity'] - 1;
+                if($cart[$key]['quantity'] == 0){
+                    array_splice($cart, $key, 1);
+                }
+            }
+        }
+        $cookie = json_encode($cart);
+        return redirect()->back()->cookie('panier', $cookie, $time);
+    }
+
     public function validateCart(){
-        Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
+        //Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
         return redirect('boutique')->withCookie(Cookie::forget('panier'));
     }
 

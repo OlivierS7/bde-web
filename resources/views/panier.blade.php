@@ -21,18 +21,26 @@
                 <p>Prix Unitaire: {{ $product->product_price }}€</p>
                 <p>Quantité: {{ $product->quantity }}</p>
             </div>
+                        <form action="{{ route('deleteFromCart', $product->product_id) }}" method="GET">
+                            @csrf
+                            <input type="submit" value="Supprimer un article" name="validate" id="validate_button" />
+                        </form>
                     </div>
                 </div>
             @endforeach
         </div>
 
     @endif
+    @if($products)
     <p>Prix total: {{ $totalPrice }}€</p>
     <form action="{{ route('validateCart') }}" method="POST">
         @csrf
     <input type="hidden" value="{{ $totalPrice }}" name="totalPrice">
         <input type="submit" value="Confirmer les achats" name="validate" id="validate_button" />
     </form>
+        @else
+        <p>Vous n'avez aucun produits dans votre panier pour le moment</p>
+    @endif
 @endsection
 @section('script')
 <script src="{{asset('js/panier.js')}}"></script>
