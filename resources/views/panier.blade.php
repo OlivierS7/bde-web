@@ -31,7 +31,7 @@
         </div>
 
     @endif
-    <div class="container no_articles">
+
         @if($products)
             <p>Prix total: {{ $totalPrice }}€</p>
             <form action="{{ route('validateCart') }}" method="POST">
@@ -40,9 +40,11 @@
                 <input type="submit" value="Confirmer les achats" name="validate" id="validate_button" />
             </form>
         @else
+            <div class="container no_articles">
             <p>Vous n'avez aucun produit dans votre panier pour le moment...</p>
+            </div>
         @endif
-    </div>
+
 
 @endsection
 @section('script')
