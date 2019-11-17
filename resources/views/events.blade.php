@@ -15,13 +15,11 @@
         </form>
 
         @endif
-        <p class="desc container d-flex flex-column justify-content-center"><strong>Passes ta souris dans ces cadres pour voir l'évènement</strong> </p>
-        <div class="row justify-content-between event_resp">
-
+        <div class="row justify-content-between mt-4 event_resp">
             @foreach($events as $event)
                 <div class="col-2 mr-1 event_resp1">
                     <div class="event_border">
-                        <div class="row d-flex flex-column justify-content-center fadein">
+                        <div class="row d-flex flex-column justify-content-center">
 
 
                             <div class="col-12">

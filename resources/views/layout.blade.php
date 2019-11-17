@@ -96,8 +96,12 @@
     @endif
 
     <div id="main">
+        <div class="container" id="note">
+            @include('cookieConsent::index')
+        </div>
         @yield('content')
-        @include('cookieConsent::index')
+
+
     </div>
 
     <footer class="footer-bottom fixed-bottom">
