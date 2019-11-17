@@ -97,8 +97,8 @@
 
     <div id="main">
         @yield('content')
+        @include('cookieConsent::index')
     </div>
-
 
     <footer class="footer-bottom fixed-bottom">
         @if((session('mail') && session('id') && session('firstname') && session('lastname')) != null)

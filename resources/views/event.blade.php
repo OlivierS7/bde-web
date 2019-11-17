@@ -16,6 +16,7 @@
                 <div class="col-3 eve_resp1">
                     <div class="desc_border eve_resp3">
                         <p>{{ $event->event_description }}</p>
+                        <p>Date de l'évènement: {{ $event->event_date }}</p>
                         @if(Session::get('id'))
                             @if($inscription && !$isPassed)
                                 <form action="{{ route('inscription', $event->event_id) }}" method="GET">
@@ -48,6 +49,7 @@
         </div>
         <div class="col">
 
+            @if(Session::get('id'))
             @if($like)
             <form action="{{ route('like', $event->event_id) }}" method="GET">
                 @csrf
@@ -62,6 +64,7 @@
                         {{ $totalLikes }}</button>
                 </div>
             </form>
+            @endif
             @endif
 
             @if($isPassed && !$inscription)

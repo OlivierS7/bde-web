@@ -94,6 +94,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/zanysoft/laravel-zip" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-cookie-consent" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
