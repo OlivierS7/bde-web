@@ -3,10 +3,11 @@
         margin-left: 250px;
         font-size: 2vh;
     }
+
     #note {
         position: sticky;
-        z-index: 101;
         top: 0;
+        z-index: 101;
         background: #fde073;
         text-align: center;
         line-height: 2.5;

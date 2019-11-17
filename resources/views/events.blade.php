@@ -28,7 +28,7 @@
                                 <p>Le : {{ $event->event_date }}</p>
                             </div>
                             <div class="col-12">
-                                <div class="shadow rounded">
+                                <div class="shadow rounded grow">
                                     @if (($event->image->first()))
                                         <img src="/storage/image/{{ $event->image->first()->image_url }}" alt="">
                                     @endif
@@ -37,7 +37,7 @@
                             <div class="col-8 offset-2">
                                 <form action="/events/{{ $event->event_id }}" method="GET">
                                     @csrf
-                                    <input class="form-control mt-1 mb-1 more" type="submit" value="Plus..." name="event_id" id="event_button" />
+                                    <input class="btn mt-1 mb-1 more" type="submit" value="Plus..." name="event_id" id="event_button" />
                                 </form>
                             </div>
 

@@ -101,7 +101,6 @@
         </div>
         @yield('content')
 
-
     </div>
 
     <footer class="footer-bottom fixed-bottom">

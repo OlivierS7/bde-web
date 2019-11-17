@@ -4,6 +4,16 @@ body{
 .more{
     background-color: hsla(39, 100%, 66%, 1);
 }
+.grow img{
+    transition: 0.75s ease;
+}
+
+.grow img:hover{
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);
+    transition: 1s ease;
+}
 
 @media (min-width: 1255px) {
     img{
