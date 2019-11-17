@@ -63,9 +63,13 @@
         <p><strong>N°1</strong> des ventes</p>
         <div class="row">
             <div class="col-12">
-                <img src="{{asset('img/cesi_logo.jpg')}}">
+                <p><strong><span>{{ $product1->product_name }}</span></strong></p>
+                <p>{{ $product1->product_description }}</p>
+                <p>{{ $product1->product_price }}€</p>
+                <img src="/storage/image/{{ $product1->image->image_url }}" />
             </div>
             <div class="col-12">
+                <p>{{ $product1->product_description }}</p>
             </div>
         </div>
     </div>
@@ -76,11 +80,12 @@
         <p><strong>N°2</strong> des ventes</p>
         <div class="row">
             <div class="col-12">
-                <img src="{{asset('img/cesi_logo.jpg')}}">
+                <p><strong><span>{{ $product2->product_name }}</span></strong></p>
+                <p>{{ $product2->product_price }}€</p>
+                <img src="/storage/image/{{ $product2->image->image_url }}" />
             </div>
             <div class="col-12">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum
-                neque, quis dictum augue. In.
+                <p>{{ $product2->product_description }}</p>
             </div>
         </div>
     </div>
@@ -90,11 +95,13 @@
         <p><strong>N°3</strong> des ventes</p>
         <div class="row">
             <div class="col-12 ">
-                <img src="{{asset('img/cesi_logo.jpg')}}">
+                <p><strong><span>{{ $product3->product_name }}</span></strong></p>
+                <p>{{ $product3->product_description }}</p>
+                <p>{{ $product3->product_price }}€</p>
+                <img src="/storage/image/{{ $product3->image->image_url }}" />
             </div>
             <div class="col-12">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare porttitor hendrerit. Sed eu dictum
-                neque, quis dictum augue. In.
+                <p>{{ $product3->product_description }}</p>
             </div>
         </div>
     </div>

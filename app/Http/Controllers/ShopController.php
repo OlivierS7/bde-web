@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
@@ -13,7 +14,14 @@ class ShopController extends Controller
     public function mainPage()
     {
         $products = Product::all();
-        return view('boutique', ['products' => $products]);
+        $topProducts = Contain::selectRaw('product_id, SUM(quantity) as quantity')->groupBy('product_id')->orderByDesc('quantity')->take(3)->get();
+        $product1 = $topProducts[0];
+        $product2 = $topProducts[1];
+        $product3 = $topProducts[2];
+        $product1 = Product::find($product1->product_id);
+        $product2 = Product::find($product2->product_id);
+        $product3 = Product::find($product3->product_id);
+        return view('boutique', ['products' => $products, 'product1' => $product1, 'product2' => $product2, 'product3' => $product3]);
     }
 
     public function getOneProduct($id)

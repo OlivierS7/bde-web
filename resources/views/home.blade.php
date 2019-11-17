@@ -11,7 +11,7 @@
         <ul>
             <li>Une boutique</li>
             <li>Une page d'évènements</li>
-            <li>Votre espace membre (uniquement si vous êtes déjà inscrit-e-s</li>
+            <li>Votre espace membre (uniquement si vous êtes déjà inscrit-e-s)</li>
             <li>Une page pour nous contacter</li>
         </ul>
         <p>N'hésitez pas à regarder les mentions légales ansi que les conditions générales de ventes du site.</p>

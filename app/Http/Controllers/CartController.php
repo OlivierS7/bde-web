@@ -80,7 +80,7 @@ class CartController extends Controller
         foreach ($cart as $product){
             Contain::create(['product_id' => $product['id'], 'order_id' => $order->order_id, 'quantity' => $product['quantity']]);
         }
-        Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
+        //Mail::to('bde-cesi-saint-nazaire@viacesi.fr')->send(new MailTrap());
         return redirect('boutique')->withCookie(Cookie::forget('panier'));
     }
 
